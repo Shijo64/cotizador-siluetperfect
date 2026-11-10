@@ -1,0 +1,1535 @@
+[
+  {
+    "producto": "100 Repuestos de 12 de Dermapen Azules",
+    "precio": "$2500 MXN",
+    "precio_num": 2500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_78360209a7fa41f1b8fc9b9c3db3d500~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/100-repuestos-de-12-de-dermapen-azules"
+  },
+  {
+    "producto": "100 Repuestos de 12 de Dermapen Blancos",
+    "precio": "$2500 MXN",
+    "precio_num": 2500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_09950bda97104b77aeaf54d0d4d7e06e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/100-repuestos-de-12-de-dermapen-blancos"
+  },
+  {
+    "producto": "4 Arrays",
+    "precio": "$825 MXN",
+    "precio_num": 825.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9044ee28f1c043959bad1a3adec4401b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/4-arrays"
+  },
+  {
+    "producto": "50 Repuestos de 12 de Dermapen Azules",
+    "precio": "$1500 MXN",
+    "precio_num": 1500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_78360209a7fa41f1b8fc9b9c3db3d500~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/50-repuestos-de-12-de-dermapen-azules"
+  },
+  {
+    "producto": "50 Repuestos de 12 de Dermapen Blancos",
+    "precio": "$1500 MXN",
+    "precio_num": 1500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_09950bda97104b77aeaf54d0d4d7e06e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/50-repuestos-de-12-de-dermapen-blancos"
+  },
+  {
+    "producto": "Accesorios Kit",
+    "precio": "$195 MXN",
+    "precio_num": 195.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1979d5cdd1424148bea8caf8f10fda91~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/accesorios-kit"
+  },
+  {
+    "producto": "Aguja de Electrocauterio sin punta",
+    "precio": "$150 MXN",
+    "precio_num": 150.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c6e8ad887aee4c73944a9867bc016f3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/aguja-de-electrocauterio-sin-punta"
+  },
+  {
+    "producto": "Agujas de electrocauterio con punta",
+    "precio": "$200 MXN",
+    "precio_num": 200.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c6e8ad887aee4c73944a9867bc016f3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/agujas-de-electrocauterio-con-punta"
+  },
+  {
+    "producto": "Antiradiación",
+    "precio": "$80 MXN",
+    "precio_num": 80.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_96079fcc030e4ceb8dbe0cc4f49c5cd0~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/antiradiación"
+  },
+  {
+    "producto": "Babero",
+    "precio": "$90 MXN",
+    "precio_num": 90.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5eb1307377ea4f2b8a0868855f07a17b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/babero-rosa-o-morado"
+  },
+  {
+    "producto": "Banda de tela",
+    "precio": "$50 MXN",
+    "precio_num": 50.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ede5f91502494a1e8eb1120b71e95e26~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/banda-de-tela"
+  },
+  {
+    "producto": "Bandita facial",
+    "precio": "$60 MXN",
+    "precio_num": 60.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_55fc712d649f41018e4a8e51e8b63d93~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/bandita-facial"
+  },
+  {
+    "producto": "Bata",
+    "precio": "$150 MXN",
+    "precio_num": 150.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_a54a049727fc44beb0f929842e7b1d80~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/bata"
+  },
+  {
+    "producto": "Bata Corta",
+    "precio": "$129.99 MXN",
+    "precio_num": 129.99,
+    "imagen": "https://static.wixstatic.com/media/9b6407_dc6aff45a6ee495fa5f5bc0dd44c1d74~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/bata-corta"
+  },
+  {
+    "producto": "Bata Larga",
+    "precio": "$258 MXN",
+    "precio_num": 258.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_47c2f41768014343ac9dcc1c9286ef50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/bata-larga"
+  },
+  {
+    "producto": "Bikini con elastico",
+    "precio": "$119.99 MXN",
+    "precio_num": 119.99,
+    "imagen": "https://static.wixstatic.com/media/9b6407_054d3461f20449aab2828f0594a1acd5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/bikini-con-elastico"
+  },
+  {
+    "producto": "Bikini con elástico",
+    "precio": "$80 MXN",
+    "precio_num": 80.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9556cf3341b24d5a941fdb59ba26af59~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/bikini-con-elástico-rosa-o-morado"
+  },
+  {
+    "producto": "Bowl de silicón",
+    "precio": "$49 MXN",
+    "precio_num": 49.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_3503b7b16a444041b4fb1a6297d8209d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/bowl-de-silicón"
+  },
+  {
+    "producto": "Boxer",
+    "precio": "$110 MXN",
+    "precio_num": 110.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_aebf4e8402e840f587b157551a6fe164~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/boxer"
+  },
+  {
+    "producto": "Boxer de caballero",
+    "precio": "$216 MXN",
+    "precio_num": 216.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ed9885afb60a434483b233fad84385a0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/boxer-de-caballero"
+  },
+  {
+    "producto": "Brocha delgada de cerdas suaves",
+    "precio": "$29 MXN",
+    "precio_num": 29.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_33c4b92922cd4eb88c8f3961d5ad7689~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/brocha-delgada-de-cerdas-suaves"
+  },
+  {
+    "producto": "Brochas de cerdas suaves",
+    "precio": "$75 MXN",
+    "precio_num": 75.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_4ed33d238f894e9cbca895c4289310b8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/brochas-de-cerdas-suaves"
+  },
+  {
+    "producto": "Brochas de silicón",
+    "precio": "$75 MXN",
+    "precio_num": 75.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d99ce4e71ba047acb982f5c05263c69a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/brochas-de-silicón"
+  },
+  {
+    "producto": "Burbuja de Hidrogeno",
+    "precio": "$8565 MXN",
+    "precio_num": 8565.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1a45e55bbdfb4d7e9123a0baa870c693~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/burbuja-de-hidrogeno"
+  },
+  {
+    "producto": "Cabezal para Alta Frecuencia curvo",
+    "precio": "$220 MXN",
+    "precio_num": 220.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_92abb0ab0be64352a80bbf01535aec79~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-curvo"
+  },
+  {
+    "producto": "Cabezal para Alta Frecuencia forma de Hongo",
+    "precio": "$280 MXN",
+    "precio_num": 280.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_77c16f7f99d64e92aa2cabd86a1c50df~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-forma-de-hongo"
+  },
+  {
+    "producto": "Cabezal para Alta Frecuencia forma de Peine",
+    "precio": "$280 MXN",
+    "precio_num": 280.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_88c83e27ae0e43289c7393e01bd1f4b2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-forma-de-peine"
+  },
+  {
+    "producto": "Cabezal para Alta Frecuencia recto",
+    "precio": "$220 MXN",
+    "precio_num": 220.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bea329004de448c9a4b7eccba394b737~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-recto"
+  },
+  {
+    "producto": "Cama Manual",
+    "precio": "$7995 MXN",
+    "precio_num": 7995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_655154be1f3149cd8422998abb8f623b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cama-manual-mcl"
+  },
+  {
+    "producto": "Carboxiterapia",
+    "precio": "$35000.5 MXN",
+    "precio_num": 35000.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d6a04005929742d9b89a79f6e4b46caf~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/carboxiterapia"
+  },
+  {
+    "producto": "Cartucho HIFU",
+    "precio": "$6999 MXN",
+    "precio_num": 6999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_72c3fe8f93e04a52bfcc5a5dbb3fef3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-hifu"
+  },
+  {
+    "producto": "Cartucho LIPOSONIX",
+    "precio": "$8990 MXN",
+    "precio_num": 8990.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b0a82a7a8eba48cb978662b6823be87a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-liposonix"
+  },
+  {
+    "producto": "Cartucho de Hydrapen",
+    "precio": "$49 MXN",
+    "precio_num": 49.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9c32f3d776914d72aaa6c187c12a4ad6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-de-hydrapen"
+  },
+  {
+    "producto": "Cartucho para Mesoterapia",
+    "precio": "$149 MXN",
+    "precio_num": 149.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_45fc0cc013664b06bb3a9761a1921e50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-para-mesoterapia"
+  },
+  {
+    "producto": "Cartucho y Jeringa de pistola de mesoterapia",
+    "precio": "$249 MXN",
+    "precio_num": 249.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_51461af972454c1d8abd7f668cbe3ee9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-y-jeringa-de-pistola-de-mesoterapia"
+  },
+  {
+    "producto": "Cartuchos Hifu12D",
+    "precio": "$5500 MXN",
+    "precio_num": 5500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f83fef69b57344fdb569c91484332ece~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cartuchos-hifu12d"
+  },
+  {
+    "producto": "Cavi 80K BB",
+    "precio": "$5985 MXN",
+    "precio_num": 5985.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6b01c9dad5ad456487a32c6b1f135cf2~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-80k-bb"
+  },
+  {
+    "producto": "Cavi Aristorm 9 en 1 40k",
+    "precio": "$11950 MXN",
+    "precio_num": 11950.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b60de02e8cab4deeada01aa4c3e6724d~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-aristorm-9-en-1-40k"
+  },
+  {
+    "producto": "Cavi Colors 10-1 Malva",
+    "precio": "$9399.5 MXN",
+    "precio_num": 9399.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7402abca17294aff987234954c8d498d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-10-1-malva"
+  },
+  {
+    "producto": "Cavi Colors 8-1",
+    "precio": "$7499 MXN",
+    "precio_num": 7499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_40e3c1be74144772a3f4cf0ef49455da~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-8-1"
+  },
+  {
+    "producto": "Cavi Colors 9-1",
+    "precio": "$8999 MXN",
+    "precio_num": 8999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_4c9e3a857e98437abb07930d3b1e09b0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-9-1"
+  },
+  {
+    "producto": "Cavi Forever Living BB",
+    "precio": "$4500.5 MXN",
+    "precio_num": 4500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e83edf19a8f84623a3701ae6f0acf370~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-living-bb"
+  },
+  {
+    "producto": "Cavi Forever Living New",
+    "precio": "$7495.5 MXN",
+    "precio_num": 7495.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_94088b5025be49f6b5399550e05fbe49~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-living-new"
+  },
+  {
+    "producto": "Cavi Forever New",
+    "precio": "$4995 MXN",
+    "precio_num": 4995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b31e0005e7ef4a64a7c7e182ad3188b3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-new-color"
+  },
+  {
+    "producto": "Cavi Max",
+    "precio": "$8945.5 MXN",
+    "precio_num": 8945.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1cd5f7d6dace4638b1a40e7acbdd9c78~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-max"
+  },
+  {
+    "producto": "Cavi Musa 8 en 1",
+    "precio": "$13695 MXN",
+    "precio_num": 13695.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d2d0f95c048d4534b8e9a117fa47c1ba~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/8-1-cavi-musa"
+  },
+  {
+    "producto": "Cavi One",
+    "precio": "$2600.5 MXN",
+    "precio_num": 2600.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_3841d26a56774977938c8a8954e52c9f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-one"
+  },
+  {
+    "producto": "Cavi Purple Digital",
+    "precio": "$7999.5 MXN",
+    "precio_num": 7999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_20527cffc3214c5b93e02abf57e1429c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-purple-digital"
+  },
+  {
+    "producto": "Cavi Slim Black",
+    "precio": "$5799.5 MXN",
+    "precio_num": 5799.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_afe64d70cf584c2fbdf8596203790151~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-black"
+  },
+  {
+    "producto": "Cavi Star",
+    "precio": "$2899.5 MXN",
+    "precio_num": 2899.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_12c2b86d51b0425cbf9b0ca086e3b2c5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-star"
+  },
+  {
+    "producto": "Cavi Vacuum",
+    "precio": "$7900.5 MXN",
+    "precio_num": 7900.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_a53d1023ab0c42d9a1bb2f52370fbd9f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-vacuum"
+  },
+  {
+    "producto": "Cavi Wera",
+    "precio": "$23995.5 MXN",
+    "precio_num": 23995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9b3a311f5b6145649edd1e185dc13baa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-wera"
+  },
+  {
+    "producto": "Cavi Ying Yang",
+    "precio": "$4999.5 MXN",
+    "precio_num": 4999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_36f274ed065d41e3ab0c49b7552fe032~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavi-ying-yang"
+  },
+  {
+    "producto": "Cavitador 6 en 1",
+    "precio": "$10499.5 MXN",
+    "precio_num": 10499.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_fa5307094ac14f7f895728932335e31e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cavitador-6-en-1"
+  },
+  {
+    "producto": "Centrifuga de Laboratorio Clínico (220v)",
+    "precio": "$3500.5 MXN",
+    "precio_num": 3500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b505db79c5644ff383b035cfa817439c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/centrifuga-de-laboratorio-clínico-220v"
+  },
+  {
+    "producto": "Cepillo Rotativo Brush",
+    "precio": "$1257.5 MXN",
+    "precio_num": 1257.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d90c2d95777248b5b282767375eff539~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/cepillo-rotativo-brush"
+  },
+  {
+    "producto": "Cleopatra 3 en 1",
+    "precio": "$7500.5 MXN",
+    "precio_num": 7500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e22b216c27504332807a5a8054c16f9a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cleopatra-3-en-1"
+  },
+  {
+    "producto": "Copa medidora",
+    "precio": "$18 MXN",
+    "precio_num": 18.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e0b181db413146d698d5100fa796f154~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/copa-medidora"
+  },
+  {
+    "producto": "Copas de Vacío de metal",
+    "precio": "$1089 MXN",
+    "precio_num": 1089.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_da25df01e2d04b9088bcb2405af6b734~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/copas-de-vacío-de-metal"
+  },
+  {
+    "producto": "Cryo Black Duo",
+    "precio": "$25999.5 MXN",
+    "precio_num": 25999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_85a4920a4f8c4322a7d9ca68f3dc7247~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cryo-black-duo"
+  },
+  {
+    "producto": "Cryo Ice Look",
+    "precio": "$39990.5 MXN",
+    "precio_num": 39990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1cd2b09a1e98477a84639e1abe3161fa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cryo-ice-look"
+  },
+  {
+    "producto": "Cryo Papada",
+    "precio": "$27990.5 MXN",
+    "precio_num": 27990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_37ec3a5917384fe9837387e633ffc519~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/cryo-papada"
+  },
+  {
+    "producto": "Cryo Personal",
+    "precio": "$2850 MXN",
+    "precio_num": 2850.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f77205d6c66c426e9b0afa9f41fe2330~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cryo-personal"
+  },
+  {
+    "producto": "Cryo RF Skin Cool",
+    "precio": "$6900.5 MXN",
+    "precio_num": 6900.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_cc00f7ee7d424dcfb292c3c9d438051f~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/cryo-rf-skin-cool"
+  },
+  {
+    "producto": "Derma Pen Fotodinamico",
+    "precio": "$1999.5 MXN",
+    "precio_num": 1999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d87a3be94b214064b7a6576ac5556474~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/derma-pen-fotodinamico"
+  },
+  {
+    "producto": "Derma Roller .20",
+    "precio": "$123 MXN",
+    "precio_num": 123.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-20"
+  },
+  {
+    "producto": "Derma Roller .50",
+    "precio": "$123 MXN",
+    "precio_num": 123.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-50"
+  },
+  {
+    "producto": "Derma Roller 1.0",
+    "precio": "$123 MXN",
+    "precio_num": 123.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-1-0"
+  },
+  {
+    "producto": "DermaPen Baul",
+    "precio": "$2665.5 MXN",
+    "precio_num": 2665.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bf78575fb1a24780bc945e4db8f55d2f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/derma-pen-baul"
+  },
+  {
+    "producto": "Dermapen Silver",
+    "precio": "$599.5 MXN",
+    "precio_num": 599.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_606596927f5c4c8e8dea9be624bfedc6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/dermapen-silver"
+  },
+  {
+    "producto": "Dermollogy - Facial   BB Eyes",
+    "precio": "$1999.5 MXN",
+    "precio_num": 1999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_318b1295246649c59f97a05a302c8bd7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/dermollogy-facial"
+  },
+  {
+    "producto": "Detox Aqua Ionizador",
+    "precio": "$4805.5 MXN",
+    "precio_num": 4805.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5159b0dca590416eb969c1628296c888~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/detox-aqua-ionizador"
+  },
+  {
+    "producto": "Diatermia  360 Tenxa Max",
+    "precio": "$12990.5 MXN",
+    "precio_num": 12990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0457ce13e090495c937680e019aee574~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/tridermia"
+  },
+  {
+    "producto": "Domo Galaxy",
+    "precio": "$3499 MXN",
+    "precio_num": 3499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0bff567362e84bcbae7cfeea51c3b8e5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/domo-galaxy"
+  },
+  {
+    "producto": "Domo Vapor Red",
+    "precio": "$2999.5 MXN",
+    "precio_num": 2999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0e4b1ab65071403a9ef7e33ddd7ffb13~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/domo-vapor-red"
+  },
+  {
+    "producto": "Dr. Pen Azul Inalámbrico",
+    "precio": "$1199.4 MXN",
+    "precio_num": 1199.4,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7f889b4e8f804f69963d994e6464bbbb~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/dr-pen-azul-inalambrico"
+  },
+  {
+    "producto": "Dr. Pen Rojo Alambrico",
+    "precio": "$499.5 MXN",
+    "precio_num": 499.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_85557da3a47448ca869523503a5031c3~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/dr-pen-rojo-alambrico"
+  },
+  {
+    "producto": "Electrocauterio MAGLEV",
+    "precio": "$899.5 MXN",
+    "precio_num": 899.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_44fe5862a47446a1b4b215b2562d4570~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/electrocauterio-manglev"
+  },
+  {
+    "producto": "Electrocauterio, PlasmaPen y Alta frecuencia",
+    "precio": "$3299.5 MXN",
+    "precio_num": 3299.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c9f07dd02a4a406da61d2de694da8706~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/electrocauterio-plasmapen-alta-frecuencia"
+  },
+  {
+    "producto": "Electroporador-Meso",
+    "precio": "$699 MXN",
+    "precio_num": 699.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7b96026d29864aec9657116ec1fd7ce2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/electroporador-meso"
+  },
+  {
+    "producto": "Espatula",
+    "precio": "$25 MXN",
+    "precio_num": 25.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6c0782910be246fc8b326de2a96ce62f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/espatula"
+  },
+  {
+    "producto": "Exi 360",
+    "precio": "$24999 MXN",
+    "precio_num": 24999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0e428187e2cb4b9c8bde34142c2a84bb~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/exi-360"
+  },
+  {
+    "producto": "Faja",
+    "precio": "$399 MXN",
+    "precio_num": 399.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f1c443a68fb44d9f85dfa625b3f0af0e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/faja"
+  },
+  {
+    "producto": "Filtro Laser Picossure",
+    "precio": "$3500 MXN",
+    "precio_num": 3500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_4652e905d3754e4080686333cbe8603d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtro-laser-picossure"
+  },
+  {
+    "producto": "Filtro de Vacuum",
+    "precio": "$350 MXN",
+    "precio_num": 350.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7851b944e5dd45f0a48efb36e060e63d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtro-de-vacuum"
+  },
+  {
+    "producto": "Filtro para Picossure 1064 nm",
+    "precio": "$3500 MXN",
+    "precio_num": 3500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b40e97b003a5420bbb6fdbdc2abf34f3~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-picossure-1064-nm"
+  },
+  {
+    "producto": "Filtro para Picossure 532nm",
+    "precio": "$3500 MXN",
+    "precio_num": 3500.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bba1f7a2095f40beb3d66d70c3a7fb87~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-picossure-532nm"
+  },
+  {
+    "producto": "Filtro para microdermoabrasión",
+    "precio": "$150 MXN",
+    "precio_num": 150.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_539fd3f81877460b9679c2a4e1c935ab~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-microdermoabrasión"
+  },
+  {
+    "producto": "Filtros de Algodón CHICOS Para Microdermoabrasión",
+    "precio": "$100 MXN",
+    "precio_num": 100.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_248042b02ad94b8abdeb546badd6bde9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtros-de-algodón-chicos-para-microdermoabrasión"
+  },
+  {
+    "producto": "Filtros de Algodón GRANDES Para Microdermoabrasion",
+    "precio": "$100 MXN",
+    "precio_num": 100.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_248042b02ad94b8abdeb546badd6bde9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/filtros-de-algodón-grandes-para-microdermoabrasion"
+  },
+  {
+    "producto": "Funda de almohada",
+    "precio": "$95 MXN",
+    "precio_num": 95.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_4991f98c6f384dbcb5dffd44b8af15e7~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/funda-almohada-rosa-o-morado"
+  },
+  {
+    "producto": "Funda para careta",
+    "precio": "$169 MXN",
+    "precio_num": 169.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ff7fb0765cc34b2b99c4988d62d86102~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/funda-para-careta"
+  },
+  {
+    "producto": "Fundas blanco o negro",
+    "precio": "$60 MXN",
+    "precio_num": 60.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_29e822d864984efbaade5c1cfb077fd7~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/fundas-blanco-o-negro"
+  },
+  {
+    "producto": "G5 Maletín",
+    "precio": "$4515.5 MXN",
+    "precio_num": 4515.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_44581062dd1d4ba3a8ada7d8462e7223~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/g5-maletín"
+  },
+  {
+    "producto": "Galvánica",
+    "precio": "$865.5 MXN",
+    "precio_num": 865.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_867afa58160049e291ba85d910765221~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/galvánica"
+  },
+  {
+    "producto": "Gimnasia Pasiva Española",
+    "precio": "$4200.5 MXN",
+    "precio_num": 4200.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_dccaf496d6ca445c9e8bae447567d9f3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-española"
+  },
+  {
+    "producto": "Gimnasia Pasiva Gluteos",
+    "precio": "$150 MXN",
+    "precio_num": 150.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_3bfd05219c9640369e5f29fbf12918d6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-gluteos"
+  },
+  {
+    "producto": "Gimnasia Pasiva Green",
+    "precio": "$3995 MXN",
+    "precio_num": 3995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c0d72d305ce640199d3647b8f7f72ff1~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-green"
+  },
+  {
+    "producto": "Gimnasia Pasiva Portable",
+    "precio": "$1595.5 MXN",
+    "precio_num": 1595.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_46c8d84db7624c13a439e0d9c029d2f9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-portable"
+  },
+  {
+    "producto": "Gimnasia Pasiva con Vacuum Retro",
+    "precio": "$5499 MXN",
+    "precio_num": 5499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_655ab98538894841a7ad15d2449f8c8b~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-con-vacuum-retro"
+  },
+  {
+    "producto": "Guantes de latex natural (no esteril)",
+    "precio": "$350 MXN",
+    "precio_num": 350.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5d885f7b4631491fa626c05f6798c908~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/guantes-de-latex-natural-no-esteril"
+  },
+  {
+    "producto": "Guantes para cavitación",
+    "precio": "$158 MXN",
+    "precio_num": 158.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d01b61d75ef74b41a17f175e784cb261~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/guantes-para-cavitación"
+  },
+  {
+    "producto": "HIFU Personal",
+    "precio": "$2145.5 MXN",
+    "precio_num": 2145.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1fe3f4bf6244494d97b8f4eadbe27e93~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hifu-personal"
+  },
+  {
+    "producto": "Hidro 14-1",
+    "precio": "$24990 MXN",
+    "precio_num": 24990.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0fc519668ec84a53b18e4e933690fc7d~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hidro-14-1"
+  },
+  {
+    "producto": "Hidro Lsix Core",
+    "precio": "$9999.5 MXN",
+    "precio_num": 9999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_233739a3ba614b45bba22d98036edbb8~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/lsix-core"
+  },
+  {
+    "producto": "Hidro Micro Aqua Colors",
+    "precio": "$6995.5 MXN",
+    "precio_num": 6995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_a69039e1e2e048eab87cf4fbf05481a9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/hidro-micro-aqua-colors"
+  },
+  {
+    "producto": "Hidro Minion 6-1",
+    "precio": "$4800.5 MXN",
+    "precio_num": 4800.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6ec92aac6fe5495c9b4d4c2678b896f4~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hidro-minion-6-1"
+  },
+  {
+    "producto": "Hidrofacial 7 en 1",
+    "precio": "$4990.5 MXN",
+    "precio_num": 4990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_63c7514d03d54850b5100f70b4a1b6a2~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-7-en-1"
+  },
+  {
+    "producto": "Hidrofacial 7 en 1 Aqua Peel",
+    "precio": "$5995.5 MXN",
+    "precio_num": 5995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_89f1ec25df7d4ee38b643a450d1b4d50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-7-en-1-aqua-peel"
+  },
+  {
+    "producto": "Hidrofacial Personal",
+    "precio": "$906.5 MXN",
+    "precio_num": 906.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9a5e7ed8f519491a9d7a4b168d1c48a4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-personal"
+  },
+  {
+    "producto": "Hifu 25D 360 Pro Max",
+    "precio": "$40995 MXN",
+    "precio_num": 40995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7b3eb8a3298d4d3dbee3bee75057c115~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hifu-25d-360-pro-max"
+  },
+  {
+    "producto": "Hifu V-max",
+    "precio": "$4999 MXN",
+    "precio_num": 4999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_62e4bbd0340a43a28d0f3d23d06f4564~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/hifu-v-max-1"
+  },
+  {
+    "producto": "IPL GOLDEN",
+    "precio": "$13995.5 MXN",
+    "precio_num": 13995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b35bb29bc3644bf2874d7d9ab590aff6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ipl-golden-1"
+  },
+  {
+    "producto": "IPL Personal",
+    "precio": "$1799.5 MXN",
+    "precio_num": 1799.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_0e3742fda9224801b78afbb69efa1376~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ipl-personal"
+  },
+  {
+    "producto": "Ice Roller",
+    "precio": "$195 MXN",
+    "precio_num": 195.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b86784655cce4cf9a96440c6a1e7dfbf~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ice-roller"
+  },
+  {
+    "producto": "Kit Bandas Elasticas Con Velcro",
+    "precio": "$600 MXN",
+    "precio_num": 600.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6f0f3a0fd70f4006bdb8577aea02cff6~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-bandas-elasticas-con-velcro"
+  },
+  {
+    "producto": "Kit Parches Gimnasia Pasiva",
+    "precio": "$2800 MXN",
+    "precio_num": 2800.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1ade7e01b74240e3969167dedd76bc67~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-parches-gimnasia-pasiva"
+  },
+  {
+    "producto": "Kit Puntas de Hidrofacial",
+    "precio": "$750 MXN",
+    "precio_num": 750.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_636bc710e0184e5c9a990a96db292906~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-puntas-de-hidrofacial-1"
+  },
+  {
+    "producto": "Kit de Puntas de Diamante para Microdermoabrasion (Completo)",
+    "precio": "$694 MXN",
+    "precio_num": 694.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_deac34133cf543ab927c4166adf0d25f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-completo"
+  },
+  {
+    "producto": "Kit de Puntas de Diamante para Microdermoabrasion Chicas",
+    "precio": "$286 MXN",
+    "precio_num": 286.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b0958e7b08f34b99a4e4d202f075a0a3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-chicas"
+  },
+  {
+    "producto": "Kit de Puntas de Diamante para Microdermoabrasion Grandes",
+    "precio": "$528 MXN",
+    "precio_num": 528.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_38006ca37c314f3ab5c5cef3b3d44d6b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-grandes"
+  },
+  {
+    "producto": "Kit de copas de Vacuum",
+    "precio": "$1499 MXN",
+    "precio_num": 1499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bee62a73485b4b36a4a614014f1fbb6c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-copas-de-vacuum"
+  },
+  {
+    "producto": "Kit de electrodos para alta frecuencia",
+    "precio": "$741 MXN",
+    "precio_num": 741.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6dbd1662f55a42c3b2e0bab179ca0c0f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-electrodos-para-alta-frecuencia"
+  },
+  {
+    "producto": "Lampara Wood",
+    "precio": "$1400.5 MXN",
+    "precio_num": 1400.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_547a292b2c26481d8e27fe13a8e12fbb~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/camara-de-wood-portable"
+  },
+  {
+    "producto": "Laser Tri Diodo Titanium",
+    "precio": "$35990 MXN",
+    "precio_num": 35990.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c669e875434f42618efdf09128b8b965~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-titanium"
+  },
+  {
+    "producto": "Laser Tri Diodo con Picossure Ice Blue",
+    "precio": "$55000 MXN",
+    "precio_num": 55000.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_55814421e9d944bdbcd38bd99c40f850~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-con-picossure-ice-blue"
+  },
+  {
+    "producto": "Laser Tridiodo Tipo ZP ice 360 + Picolaser No Invasivo",
+    "precio": "$99990.5 MXN",
+    "precio_num": 99990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_81a006d0586847a1b8b16da56a3b3407~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/laser-tridiodo-sopra-no-ice-360-picolaser-no-invasivo"
+  },
+  {
+    "producto": "Laser White Tri Diodo",
+    "precio": "$18000 MXN",
+    "precio_num": 18000.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_37ee720771974fbf86bee17f0e9da609~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/laser-white-tri-diodo"
+  },
+  {
+    "producto": "Laser diodo Tomas 808 ZP",
+    "precio": "$13500.5 MXN",
+    "precio_num": 13500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_aed3ed27808742d08b7b591e2d39f45e~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/laser-diodo-tomas-808-zp"
+  },
+  {
+    "producto": "Laser tri diodo con Picossure",
+    "precio": "$35000 MXN",
+    "precio_num": 35000.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c72797f4a62449be92450270081dfeec~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-con-picossure"
+  },
+  {
+    "producto": "Lentes Goggles Ciegos para Paciente",
+    "precio": "$165 MXN",
+    "precio_num": 165.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_cda97e7e2e4d4d30a4ad77a20698fbdf~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/lentes-goggles-ciegos-para-paciente"
+  },
+  {
+    "producto": "Lentes para IPL - Uso del Profesional",
+    "precio": "$462 MXN",
+    "precio_num": 462.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7183980315eb4f0e87a668bd19a39130~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/lentes-para-ipl-uso-del-profesional"
+  },
+  {
+    "producto": "Lipax",
+    "precio": "$999 MXN",
+    "precio_num": 999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_fae060b28be54665b1fde2dfa935cffc~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/lipax"
+  },
+  {
+    "producto": "Lipo Cavi Musa 9 en 1",
+    "precio": "$19995.5 MXN",
+    "precio_num": 19995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_2b710180ff6c4152acd9eb7133883176~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/lipo-cavi-musa-9-en-1"
+  },
+  {
+    "producto": "Lipo Cavi Musa Shape",
+    "precio": "$23199.5 MXN",
+    "precio_num": 23199.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_fb993c9618a64ef0a859bcfef95e38e2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/lipo-cavi-musa-shape"
+  },
+  {
+    "producto": "Lipofrost",
+    "precio": "$45990.5 MXN",
+    "precio_num": 45990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_63e95c9880764b67aec49908bb3c163b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/lipofrost"
+  },
+  {
+    "producto": "Lámpara de LED con Lupa para Faciales - 5X",
+    "precio": "$987 MXN",
+    "precio_num": 987.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_8fc891718ff34ea496bf6d443c97741c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/lámpara-de-led-con-lupa-para-faciales-5x"
+  },
+  {
+    "producto": "Lámpara de pedestal",
+    "precio": "$999 MXN",
+    "precio_num": 999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_22468db0a264469c99e80c896befcd03~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/lampara-de-pedestal"
+  },
+  {
+    "producto": "MEMBRANA PARA HIFU GOLDEN",
+    "precio": "$300 MXN",
+    "precio_num": 300.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c06c9630b1a04a5d8d506f9eba0e1fa1~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/membrana-para-hifu-golden"
+  },
+  {
+    "producto": "Manguera Lisa",
+    "precio": "$300 MXN",
+    "precio_num": 300.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6ec99b7f87e7408c8998acc6bea11e5b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/manguera-lisa"
+  },
+  {
+    "producto": "Manguera Y delgada",
+    "precio": "$400 MXN",
+    "precio_num": 400.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f0e292ab5b8343f4af762043a72144df~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/manguera-y-delgada"
+  },
+  {
+    "producto": "Manta térmica",
+    "precio": "$3495.5 MXN",
+    "precio_num": 3495.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_31a31b482bb44e3f908aad04034342d2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/manta-térmica"
+  },
+  {
+    "producto": "Martillo Frio-Calor",
+    "precio": "$1395.5 MXN",
+    "precio_num": 1395.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c7a488cba36f476aa561da05105e5ee6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/martillo-frio-calor"
+  },
+  {
+    "producto": "Mascara de Carbón Activado",
+    "precio": "$220 MXN",
+    "precio_num": 220.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ec309e5afd99461e9b32de230b23e1d1~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/mascara-de-carbón-activado-1"
+  },
+  {
+    "producto": "Mascara de carbón activado",
+    "precio": "$280 MXN",
+    "precio_num": 280.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_548cb314f3664475b713ec026d61a540~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mascara-de-carbón-activado"
+  },
+  {
+    "producto": "Medusa EMS RF",
+    "precio": "$3300.5 MXN",
+    "precio_num": 3300.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d126c8cf0cc14d96b77a3d090491c882~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/medusa-ems-rf"
+  },
+  {
+    "producto": "Membrana Cryolipolisis (10 pzs)",
+    "precio": "$800 MXN",
+    "precio_num": 800.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e72e95de4f594684b59297402bec8d78~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/membrana-cryolipolisis-28-x-28-cm"
+  },
+  {
+    "producto": "Membrana para HIFU Profesional",
+    "precio": "$300 MXN",
+    "precio_num": 300.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_3f28c72c4b404689b56251d465bc67a8~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/membrana-para-hifu-profesional"
+  },
+  {
+    "producto": "Mesa Auxiliar Delux",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_032a417107df4baf8bc5662c66a0e4fb~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-auxiliar-delux"
+  },
+  {
+    "producto": "Mesa Colors Acero Blanca",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_53de639b4df84bb6929dc214d739c9cd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-colors-acero-blanca"
+  },
+  {
+    "producto": "Mesa Colors Acero Rosa",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_2b133a8fabf84d1babf8889b09e7fa84~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-colors-acero-rosa"
+  },
+  {
+    "producto": "Mesa Cristal",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_21916cb23bc646f08fe1ab6c387114ed~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-cristal"
+  },
+  {
+    "producto": "Mesa Diamante",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c4ea435c0d414d3aaaed8e78119cdbb6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-diamante"
+  },
+  {
+    "producto": "Mesa eléctrica laser para equipos pesados",
+    "precio": "$7995 MXN",
+    "precio_num": 7995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7ef046b0ee1c4069bf106ab6182b25dd~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/mesa-eléctrica-laser-para-equipos-pesados"
+  },
+  {
+    "producto": "Mesoterapia  Inalámbrica",
+    "precio": "$899 MXN",
+    "precio_num": 899.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_2f521978ff7141d2b0709fb6756ac23f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/mesoterapia-inalámbrica"
+  },
+  {
+    "producto": "Micro 5 en 1 Digital",
+    "precio": "$6999.5 MXN",
+    "precio_num": 6999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_511652f7e1a1455eb2c50d466179c30b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/microdermoabrasión-digital"
+  },
+  {
+    "producto": "Micro 5-1 Analoga",
+    "precio": "$5500.5 MXN",
+    "precio_num": 5500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ac0bf469597745dea6fbb57483a3a055~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/micro-5-1-analoga"
+  },
+  {
+    "producto": "Micro Esfera",
+    "precio": "$2400.5 MXN",
+    "precio_num": 2400.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f38aadf9ec634af5be70e22f60d5c76d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/micro-esfera"
+  },
+  {
+    "producto": "Micro One",
+    "precio": "$1990.5 MXN",
+    "precio_num": 1990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e89f7d65c6974ad5b980506559903ec0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/micro-one"
+  },
+  {
+    "producto": "Micro Portable",
+    "precio": "$799.5 MXN",
+    "precio_num": 799.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_00de4b777c474a939551fe1f148a946a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/microdermoabrasión-portable"
+  },
+  {
+    "producto": "MicroHidro Pink 2-1",
+    "precio": "$4845.5 MXN",
+    "precio_num": 4845.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_02f941ba99394799b3070825df54a1c2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/microhidro-pink-2-1"
+  },
+  {
+    "producto": "Microcircuk",
+    "precio": "$1980.5 MXN",
+    "precio_num": 1980.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bf1d510e8b6645bc87d42abfcc4c1ef0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/microcircuk"
+  },
+  {
+    "producto": "Microdermoabrasión Profesional",
+    "precio": "$2995.5 MXN",
+    "precio_num": 2995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_48d0b54681a1424ebe6128385982bec2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/micro-profesional"
+  },
+  {
+    "producto": "Microdermoabrasión con Alta Frecuencia",
+    "precio": "$3990.5 MXN",
+    "precio_num": 3990.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_82d7731666794c1a987f498216cf6348~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/micro-alta-frecuencia"
+  },
+  {
+    "producto": "Microdermoabrasión con Radiofrecuencia",
+    "precio": "$4995.5 MXN",
+    "precio_num": 4995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_175933d1b68a42d49a4d8da421334bf0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/micro-radiofrecuencia"
+  },
+  {
+    "producto": "Mini Ultrasonido Facial Y Corporal",
+    "precio": "$599.5 MXN",
+    "precio_num": 599.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5d22036eb8d94b23adf105657c2f59fd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/mini-ultrasonido-2mhz-facial-y-corporal"
+  },
+  {
+    "producto": "Multifuncional 4-1",
+    "precio": "$4615.5 MXN",
+    "precio_num": 4615.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_e7fe95ff67934bde9c7be562695df69a~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/multifuncional-4-1"
+  },
+  {
+    "producto": "Multifuncional FYC",
+    "precio": "$11500.5 MXN",
+    "precio_num": 11500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_37ca9c95bb2045709af4f8160a4456a3~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/multifuncional-fyc"
+  },
+  {
+    "producto": "Máscara con cuello fototerapia luz fotodinámica 7 colores",
+    "precio": "$1299.5 MXN",
+    "precio_num": 1299.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_eea51b346e084fe38b055eddff6018f1~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/máscara-con-cuello-fototerapia-luz-fotodinámica-7-colores"
+  },
+  {
+    "producto": "Máscara fototerapia luz fotodinámica 7 colores",
+    "precio": "$999.5 MXN",
+    "precio_num": 999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6084805270c44c33a03429c3f5afcae9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/máscara-fototerapia-luz-fotodinámica-7-colores"
+  },
+  {
+    "producto": "Nano RF Fraccionado",
+    "precio": "$8900.5 MXN",
+    "precio_num": 8900.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_735c19cf02604c12bf4f2a9f67b62f0d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/nano-rf-fraccionado"
+  },
+  {
+    "producto": "NeeBright Kit",
+    "precio": "$1575 MXN",
+    "precio_num": 1575.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9543bcb9ba5442e9bb7fe8f029abc33f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/neebright-kit"
+  },
+  {
+    "producto": "NeeRevive Kit",
+    "precio": "$1575 MXN",
+    "precio_num": 1575.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ff939b3b53b1473bbb0b5a4bd1e0ed5f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/neerevive-kit"
+  },
+  {
+    "producto": "Ondas de choque",
+    "precio": "$7500.5 MXN",
+    "precio_num": 7500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_6afa1a1bcd9e44bdbd7d9d61533b41fe~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ondas-de-choque"
+  },
+  {
+    "producto": "Oxygen Spray",
+    "precio": "$599 MXN",
+    "precio_num": 599.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_4105d1b85ef343ba9a820c9f83385a61~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/oxygen-spray"
+  },
+  {
+    "producto": "Pantufla",
+    "precio": "$85 MXN",
+    "precio_num": 85.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b755199799594809a7eda5e1984d3f23~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/pantufla"
+  },
+  {
+    "producto": "Picosure Personal",
+    "precio": "$1995.5 MXN",
+    "precio_num": 1995.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_2458e11936c043efa543b23baf5f0dbf~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "url": "https://www.siluetperfect.shop/product-page/picosure-personal"
+  },
+  {
+    "producto": "Pistola Mesoterapia",
+    "precio": "$1999 MXN",
+    "precio_num": 1999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_8f541d371a3b4b4c83f006cee4e0ccdc~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/pistola-mesoterapia"
+  },
+  {
+    "producto": "Presoterapia Purple",
+    "precio": "$7999 MXN",
+    "precio_num": 7999.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9bb33d699bc64ec1a80323988e5f47d9~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/presoterapia-purple"
+  },
+  {
+    "producto": "Presoterapia Silver",
+    "precio": "$15999.5 MXN",
+    "precio_num": 15999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_feb6b8c03b3b41898a66eb5bab088c53~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/presoterapia-silver-1"
+  },
+  {
+    "producto": "RF 360",
+    "precio": "$4995 MXN",
+    "precio_num": 4995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7687d0ebc99d4c2cb9a5b5a98db0c383~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/rf-360"
+  },
+  {
+    "producto": "RF Adios Papada",
+    "precio": "$445.5 MXN",
+    "precio_num": 445.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_8c80a5aed2da4c518bec7fefd4a8e037~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/adios-papada"
+  },
+  {
+    "producto": "RF One",
+    "precio": "$2595.5 MXN",
+    "precio_num": 2595.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5eb01b80e8294b7ab5e2010a63097e3a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/rf-one"
+  },
+  {
+    "producto": "RF Star",
+    "precio": "$2899.5 MXN",
+    "precio_num": 2899.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_bb9689ce2a73435fadd6c1459321b678~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/rf-star"
+  },
+  {
+    "producto": "Radio Frecuencia Profesional",
+    "precio": "$84995 MXN",
+    "precio_num": 84995.0,
+    "imagen": "",
+    "url": "https://www.siluetperfect.shop/product-page/radio-frecuencia-profesional"
+  },
+  {
+    "producto": "Radio frecuencia de ojos",
+    "precio": "$10500.5 MXN",
+    "precio_num": 10500.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c1a1ca08f30442a0a2ff14e3e74a334e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/cuio"
+  },
+  {
+    "producto": "Radiofrecuencia Facial Mini",
+    "precio": "$1122 MXN",
+    "precio_num": 1122.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9255ce3a2c034f9a9e88e873fb0cecae~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/radiofrecuencia-facial-mini"
+  },
+  {
+    "producto": "Radiofrecuencia Triangular",
+    "precio": "$2999.5 MXN",
+    "precio_num": 2999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_d35c1a32059748c1a2338ac04d0af0d7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/radiofrecuencia-triangular"
+  },
+  {
+    "producto": "Repuesto de 12 para Derma-Pen",
+    "precio": "$350 MXN",
+    "precio_num": 350.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_1a0ab0e0cc43435e855069258a6a91b4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-12-para-derma-pen"
+  },
+  {
+    "producto": "Repuesto de 12 para Dr. Pen Azul",
+    "precio": "$350 MXN",
+    "precio_num": 350.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5177e3a8065747c483df821e411bba08~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-12-para-dr-pen-azul"
+  },
+  {
+    "producto": "Repuesto de Hialuronico Pen",
+    "precio": "$38 MXN",
+    "precio_num": 38.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_10f198f133b0481cb4011bf16e8fb8fa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-hialuronico-pen"
+  },
+  {
+    "producto": "Repuesto de Hialuronico Pen",
+    "precio": "$38 MXN",
+    "precio_num": 38.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_51fdc4e3f758418887651dec98e71d8c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-hialuronico-pen-1"
+  },
+  {
+    "producto": "Resistencia para Vapor",
+    "precio": "$1200 MXN",
+    "precio_num": 1200.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_76a98ebd2f67461aac9bc7dc9d715539~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/resistencia-para-vapor"
+  },
+  {
+    "producto": "Rodillo Facial Dorado",
+    "precio": "$170 MXN",
+    "precio_num": 170.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5c13bd0344344310b00e348c7358f67e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/rodillo-facial-dorado"
+  },
+  {
+    "producto": "Sabana con elástico",
+    "precio": "$220 MXN",
+    "precio_num": 220.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_267d8aa42fe146d59b2d14febaaff8f6~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/sabana-con-elástico"
+  },
+  {
+    "producto": "Sabana lisa",
+    "precio": "$230 MXN",
+    "precio_num": 230.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c44319f6a3ac4a7ca3088e2c2d538c4b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/sabana-lisa"
+  },
+  {
+    "producto": "Sacacomedones",
+    "precio": "$349 MXN",
+    "precio_num": 349.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_32d9feb09ae94b149d54a62e60b9568c~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/sacacomedones"
+  },
+  {
+    "producto": "Sani Life",
+    "precio": "$699.5 MXN",
+    "precio_num": 699.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_24ce086c45934bcea39f2991bc48dbd5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/sani-life"
+  },
+  {
+    "producto": "Silla Hidraulica",
+    "precio": "$2499 MXN",
+    "precio_num": 2499.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_16248e1acacb4fcd9f55adebca3a39e5~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/silla-hidraulica"
+  },
+  {
+    "producto": "Skin Scrubber NOVA Digital",
+    "precio": "$490.5 MXN",
+    "precio_num": 490.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_13c98e3def9d4b46be83c4d2d6f7ac3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/skin-scrubber-nova-digital"
+  },
+  {
+    "producto": "Solución para Hidrofacial",
+    "precio": "$550 MXN",
+    "precio_num": 550.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_c2fb06e049a44f91ad06859847dfc507~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/solución-para-hydrafacial"
+  },
+  {
+    "producto": "Strong Table",
+    "precio": "$1995 MXN",
+    "precio_num": 1995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_9d6b714d0d69406cb9b1b8546d2f42e7~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/strong-table"
+  },
+  {
+    "producto": "Tanga Estandar",
+    "precio": "$55 MXN",
+    "precio_num": 55.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_8f90265f845b42e3acd5022823b29d2f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/tanga-estandar"
+  },
+  {
+    "producto": "Tensa Maxxxx",
+    "precio": "$10995 MXN",
+    "precio_num": 10995.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_94691bd0372443c3922c43a91726d390~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/diatermia-pro"
+  },
+  {
+    "producto": "Top con tirante",
+    "precio": "$65 MXN",
+    "precio_num": 65.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b8f86c919ec74889be1bba42ce83caf2~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/top-con-tirante"
+  },
+  {
+    "producto": "Ultrasonido 1 MHZ",
+    "precio": "$810.5 MXN",
+    "precio_num": 810.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_61c65e0b7b304f208c58111d25c26c35~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1-mhz"
+  },
+  {
+    "producto": "Ultrasonido 1 y 3 Mhz Profesional",
+    "precio": "$5999.5 MXN",
+    "precio_num": 5999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_de3e737663eb455b91626f74ee87499e~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1-y-3-mhz-profesional"
+  },
+  {
+    "producto": "Ultrasonido 1Mhz con Guantes de Electroestimulación",
+    "precio": "$999.5 MXN",
+    "precio_num": 999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_2434305183104fd3bac49fff7477e94a~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1mhz-con-guantes"
+  },
+  {
+    "producto": "Ultrasonido 2 Cabezales",
+    "precio": "$750.5 MXN",
+    "precio_num": 750.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_ffeb923b0fc84fbb921ced0808b7356b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-2-cabezales"
+  },
+  {
+    "producto": "Ultrasonido Eve",
+    "precio": "$1599.5 MXN",
+    "precio_num": 1599.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_77b72100681d44409fd0b66cab1d54b9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-eve"
+  },
+  {
+    "producto": "Ultrasonido Facial 1mhz 2 Cabezales",
+    "precio": "$1600.5 MXN",
+    "precio_num": 1600.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_5ed8627b163b48b69f7b5f31c52cbc67~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-facial-1mhz-2-cabezales"
+  },
+  {
+    "producto": "Ultrasonido Pink",
+    "precio": "$999.5 MXN",
+    "precio_num": 999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f39ddd77f9f742328033b752d056d444~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-pink"
+  },
+  {
+    "producto": "Ultrasonido QUIU",
+    "precio": "$2700.5 MXN",
+    "precio_num": 2700.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_65e83fd9120b4cf79b03b32897951ff6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-quiu"
+  },
+  {
+    "producto": "Ultrasonido con Microdermoabrasión",
+    "precio": "$3495.5 MXN",
+    "precio_num": 3495.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b0fbf05b60134f4f8c604c3f2cf6a15b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-micro"
+  },
+  {
+    "producto": "Ultrasonido con electrocauterio",
+    "precio": "$999.5 MXN",
+    "precio_num": 999.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f9ddc8653f874ab3b3941ee20473eafa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-con-electrocauterio"
+  },
+  {
+    "producto": "Vacuum Eco Acero",
+    "precio": "$3510.5 MXN",
+    "precio_num": 3510.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_b7b3f9b1e5ff4ca69f85cd9417808f1c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/vacuum-eco-acero"
+  },
+  {
+    "producto": "Vapor Analogo",
+    "precio": "$870.5 MXN",
+    "precio_num": 870.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_7d4436e8ec5a4412b7a49d0437ce9aa8~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/vapor-analogo"
+  },
+  {
+    "producto": "Vapor Frio Calor",
+    "precio": "$1932.5 MXN",
+    "precio_num": 1932.5,
+    "imagen": "https://static.wixstatic.com/media/9b6407_a639d68de90649fb88fc0b28f04e2cb7~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "url": "https://www.siluetperfect.shop/product-page/vapor-frio-calor"
+  },
+  {
+    "producto": "Vaso Vapor de Ozono",
+    "precio": "$600 MXN",
+    "precio_num": 600.0,
+    "imagen": "https://static.wixstatic.com/media/9b6407_f306e8dd1b8b48aaa6d32e4888d737b8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "url": "https://www.siluetperfect.shop/product-page/vaso-vapor-de-ozono"
+  }
+]
