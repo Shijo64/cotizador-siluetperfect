@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotización — Siluet Perfect</title>
+<script src="libs/jspdf.umd.min.js"></script>
+<script src="libs/jspdf.plugin.autotable.min.js"></script>
+<style>
+  :root {
+    --primary: #066c6e;
+    --primary-dark: #04545a;
+    --primary-soft: #e6f7f7;
+    --secondary: #3cc1c5;
+    --bg: #f2faf9;
+    --card: #ffffff;
+    --border: #d8ecea;
+    --text: #12201f;
+    --muted: #5d7a78;
+    --accent: #f6fbfb;
+    --danger: #b3273a;
+    --shadow: 0 1px 2px rgba(6,108,110,.06), 0 18px 40px -24px rgba(6,108,110,.35);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+    background: radial-gradient(1100px 520px at 50% -260px, #ffffff 0%, var(--bg) 62%) no-repeat, var(--bg);
+    color: var(--text); line-height: 1.55; padding: 40px 20px 56px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1040px; margin: 0 auto; background: var(--card);
+    border: 1px solid var(--border); border-radius: 22px; padding: 40px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ---- Cabecera ---- */
+  header { display: flex; gap: 22px; align-items: center; padding-bottom: 28px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+  .logo {
+    width: 84px; height: 84px; flex-shrink: 0; border-radius: 18px; overflow: hidden;
+    background: var(--primary-soft); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); font-weight: 800; font-size: .8rem; letter-spacing: .08em;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+  .company { min-width: 0; }
+  .company h1 { font-size: clamp(1.35rem, 2.6vw, 1.75rem); font-weight: 800; letter-spacing: -.02em; color: var(--primary-dark); line-height: 1.2; }
+  .company p { color: var(--muted); font-size: .82rem; line-height: 1.5; margin-top: 3px; }
+  .doc-badge {
+    margin-left: auto; align-self: flex-start; text-align: right;
+    font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--primary); background: var(--primary-soft); border: 1px solid var(--border);
+    padding: 7px 12px; border-radius: 999px; white-space: nowrap;
+  }
+
+  /* ---- Datos de la cotización ---- */
+  .meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px; padding: 20px; margin-bottom: 24px;
+    background: var(--accent); border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .field label {
+    font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  }
+  input[type="number"], input[type="text"], input[type="date"], select {
+    padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
+    font-size: .9rem; font-family: inherit; color: var(--text); background: var(--card);
+    transition: border-color .15s, box-shadow .15s; width: 100%;
+  }
+  input[type="number"] { width: 74px; text-align: right; }
+  input[type="date"] { max-width: 190px; }
+  input::placeholder { color: #8fa8a6; opacity: 1; }
+  input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(60,193,197,.18); }
+  #quoteNumber { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--primary-dark); background: var(--primary-soft); border-color: transparent; cursor: default; }
+
+  /* ---- Botones ---- */
+  .toolbar { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .btn {
+    font: inherit; font-size: .82rem; font-weight: 700; letter-spacing: .01em;
+    padding: 10px 18px; border-radius: 999px; border: 1px solid transparent;
+    background: var(--accent); color: var(--primary-dark); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    transition: background .15s, color .15s, border-color .15s, transform .1s, box-shadow .15s;
+  }
+  .btn:hover { background: #eef5f5; border-color: var(--border); }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 8px 18px -10px rgba(6,108,110,.75); }
+  .btn-primary:hover { background: var(--primary-dark); border-color: transparent; }
+  .btn-ghost { background: transparent; border-color: var(--border); color: var(--muted); }
+  .btn-ghost:hover { background: var(--accent); color: var(--primary-dark); }
+  .btn-danger { background: transparent; border-color: transparent; color: var(--muted); padding: 7px 11px; font-size: .76rem; font-weight: 600; }
+  .btn-danger:hover { background: #fdeef0; border-color: #f6d9de; color: var(--danger); }
+  .btn-lg { padding: 14px 40px; font-size: .92rem; }
+  .actions { display: flex; justify-content: flex-end; margin-top: 26px; }
+
+  /* ---- Tabla ---- */
+  .table-responsive {
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: auto; -webkit-overflow-scrolling: touch;
+    max-height: 62vh; background: var(--card);
+  }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; }
+  th, td { padding: 13px 14px; text-align: left; vertical-align: middle; }
+  th {
+    position: sticky; top: 0; z-index: 1;
+    background: var(--primary-soft); color: var(--primary-dark);
+    font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+    white-space: nowrap; border-bottom: 1px solid var(--border);
+  }
+  td { border-bottom: 1px solid #edf6f5; font-size: .9rem; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fbfefe; }
+  .product-img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; background: var(--accent); display: block; }
+  .product-name { font-weight: 600; min-width: 150px; }
+  .price, .line-total { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .price { color: var(--muted); }
+  .line-total { font-weight: 700; }
+  tbody:empty::after { content: ""; }
+  .empty-row td { color: var(--muted); font-size: .87rem; padding: 28px 14px; text-align: center; background: var(--accent); }
+
+  /* ---- Totales ---- */
+  .summary {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 28px;
+    margin-top: 20px; padding: 20px 22px; flex-wrap: wrap;
+    background: var(--accent); border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .iva-toggle {
+    display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
+    font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--primary-dark); padding: 9px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .iva-toggle input { width: 17px; height: 17px; accent-color: var(--primary); cursor: pointer; }
+  .summary-rows { margin-left: auto; min-width: 300px; display: flex; flex-direction: column; gap: 8px; }
+  .sum-row { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-size: .86rem; color: var(--muted); }
+  .sum-row span:last-child { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); }
+  .sum-row.total { margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--border); font-size: .74rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--primary-dark); }
+  .sum-row.total span:last-child { font-size: 1.55rem; font-weight: 800; letter-spacing: -.02em; color: var(--primary); }
+
+  .lookup-status { font-size: .8rem; color: var(--muted); }
+  .lookup-status.success { color: #1f8a4c; }
+  .lookup-status.error { color: var(--danger); }
+  .lookup-status.loading { color: #b57d09; }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .toolbar, .btn, .actions, #undoToast { display: none !important; }
+    .container { box-shadow: none; border: none; padding: 0; border-radius: 0; }
+    .table-responsive { max-height: none; overflow: visible; }
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 10px 8px 30px; }
+    .container { padding: 14px 12px; border-radius: 12px; }
+    header { gap: 10px; padding-bottom: 14px; margin-bottom: 14px; }
+    .logo { width: 56px; height: 56px; border-radius: 12px; }
+    .company h1 { font-size: 1.25rem; }
+    .company p { font-size: .72rem; }
+    .doc-badge { display: none; }
+    /* tabla -> tarjetas apiladas en móvil */
+    #productsTable thead { display: none; }
+    #productsTable, #productsTable tbody { display: block; }
+    #productsTable tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; padding: 12px 14px; border-bottom: 1px solid #edf6f5; position: relative; align-items: center; }
+    #productsTable tbody tr:last-child { border-bottom: none; }
+    #productsTable td { display: block; padding: 0; border: none; white-space: normal; }
+    #productsTable td:first-child { display: none; }
+    #productsTable td:nth-child(2) { grid-column: 1 / -1; font-weight: 700; font-size: .95rem; padding-right: 54px; }
+    #productsTable td:nth-child(3)::before { content: "Precio"; }
+    #productsTable td:nth-child(4)::before { content: "Cant."; }
+    #productsTable td:nth-child(5)::before { content: "Desc. %"; }
+    #productsTable td:nth-child(6)::before { content: "Importe"; }
+    #productsTable td:nth-child(3), #productsTable td:nth-child(4),
+    #productsTable td:nth-child(5), #productsTable td:nth-child(6) { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .82rem; }
+    #productsTable td:nth-child(3)::before, #productsTable td:nth-child(4)::before,
+    #productsTable td:nth-child(5)::before, #productsTable td:nth-child(6)::before { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    #productsTable td:nth-child(6) { font-size: .95rem; }
+    #productsTable td:nth-child(7) { position: absolute; top: 8px; right: 8px; }
+    #productsTable td:nth-child(7) .btn { padding: 5px 8px; font-size: .7rem; }
+    input[type="number"] { width: 62px; padding: 7px 8px; }
+    .table-responsive { max-height: none; }
+    .meta { padding: 10px; gap: 8px; margin-bottom: 14px; }
+    .toolbar { margin-bottom: 10px; }
+    .table-responsive { max-height: 50vh; border-radius: 10px; }
+    th, td { padding: 8px 8px; font-size: .8rem; }
+    .product-img { width: 36px; height: 36px; border-radius: 8px; }
+    .summary { padding: 12px; gap: 10px; margin-top: 14px; }
+    .container { padding-bottom: 24px; }
+    .actions { position: sticky; bottom: 0; margin: 16px -12px -24px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-top: 1px solid var(--border); }
+    .actions .btn { width: 100%; }
+  }
+
+
+/* Historial: apilar filas en móvil */
+@media (max-width: 560px) {
+  #histModal thead { display: none; }
+  #histModal tbody tr {
+    display: grid; grid-template-columns: 1fr auto; gap: 2px 10px;
+    padding: 10px 0; border-bottom: 1px solid #eee;
+  }
+  #histModal tbody td { display: block; border: 0 !important; padding: 0 !important; }
+  #histModal .h-fecha { text-align: right; color: #6b7f7f; font-size: .78rem; }
+  #histModal .h-total { text-align: right; }
+  #histModal .h-acc { grid-column: 1 / 3; display: flex; gap: 8px; padding-top: 8px !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo" id="logoContainer"><span>LOGO</span></div>
+    <div class="company">
+      <h1 id="companyName">Siluet Perfect</h1>
+      <p id="companyRFC">RFC: REHA6212318T1</p>
+      <p id="companyAddress">Monterrey, N.L., México</p>
+      <p id="companyContact">Tel: 8112400513 | Cel: 8116876950 | adrianamarissa@hotmail.com</p>
+    </div>
+    <span class="doc-badge">Cotización</span>
+  </header>
+
+  <div class="meta">
+    <div class="field">
+      <label for="quoteDate">Fecha</label>
+      <input type="date" id="quoteDate" onchange="updateQuoteDate(this.value)">
+    </div>
+    <div class="field">
+      <label for="clientName">Cliente</label>
+      <input type="text" id="clientName" value="" placeholder="Nombre del cliente" onchange="updateClientName(this.value)">
+    </div>
+    <div class="field">
+      <label for="clientPhone">Teléfono / WhatsApp</label>
+      <input type="text" id="clientPhone" value="" placeholder="Opcional" onchange="updateClientPhone(this.value)">
+    </div>
+    <div class="field">
+      <label for="clientRfc">RFC / Dirección</label>
+      <input type="text" id="clientRfc" value="" placeholder="Opcional" onchange="updateClientRfc(this.value)">
+    </div>
+    <div class="field">
+      <label for="quoteValidity">Vigencia</label>
+      <select id="quoteValidity" onchange="updateValidity(this.value)">
+        <option value="7 días">7 días</option>
+        <option value="15 días" selected>15 días</option>
+        <option value="30 días">30 días</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="quoteNumber">Folio</label>
+      <input type="text" id="quoteNumber" readonly>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn btn-primary" id="addProductBtn" title="Agregar producto">+ Agregar producto</button>
+    <button class="btn btn-ghost" onclick="newQuote()" title="Empezar cotización en blanco">Nueva cotización</button>
+    <button class="btn btn-ghost" onclick="openHistoryModal()" title="Ver historial de cotizaciones">Historial</button>
+  </div>
+
+  <div class="table-responsive">
+    <table id="productsTable">
+      <thead>
+        <tr>
+          <th style="width: 64px;">Foto</th>
+          <th>Producto</th>
+          <th style="width: 110px;">Precio Unit.</th>
+          <th style="width: 74px;">Cant.</th>
+          <th style="width: 96px;">Desc. %</th>
+          <th style="width: 110px;">Importe</th>
+          <th style="width: 76px;"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="summary">
+    <label class="iva-toggle" for="ivaToggle">
+      <input type="checkbox" id="ivaToggle" onchange="toggleIVA(this.checked)"> IVA 16%
+    </label>
+    <div class="summary-rows">
+      <div class="sum-row"><span>Descuento</span><span id="discountTotal">$0.00</span></div>
+      <div class="sum-row" id="ivaBox" style="display: none;"><span>IVA 16%</span><span id="ivaTotal">$0.00</span></div>
+      <div class="sum-row total"><span>Total</span><span id="finalTotal">$0.00</span></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary btn-lg" onclick="exportToPDF()">Guardar</button>
+  </div>
+</div>
+
+<script>
+// ===== DATOS DE LA COTIZACIÓN =====
+const quoteData = {
+  company: {
+    name: "Siluet Perfect",
+    rfc: "REHA6212318T1",
+    address: "Monterrey, N.L., México",
+    contact: "Tel: 8112400513 | Cel: 8116876950 | adrianamarissa@hotmail.com",
+    logo: "data:image/png;base64,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" // Logo local base64
+  },
+  quote: {
+    number: "33",
+    date: "2024-11-14",
+    currency: "MXN",
+    client: "", phone: "", rfc: "",
+    validity: "15 días"
+  },
+  products: []
+};
+
+// ===== UTILIDADES =====
+const fmt = (n) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: 2 }).format(n);
+const parseNum = (v) => Number(String(v).replace(/[^0-9.-]/g, '')) || 0;
+const slugify = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+function updateQuoteDate(val) {
+  quoteData.quote.date = val;
+  saveQuote();
+}
+function updateClientName(val) {
+  quoteData.quote.client = val;
+  saveQuote();
+}
+
+function updateValidity(val) {
+  quoteData.quote.validity = val;
+  saveQuote();
+}
+
+// ===== PERSISTENCIA LOCAL =====
+const QUOTE_KEY = 'siluet_current_quote';
+const FOLIO_KEY = 'siluet_folio_seq';
+
+function saveQuote() {
+  const payload = {
+    quote: quoteData.quote,
+    products: quoteData.products,
+    iva: document.getElementById('ivaToggle').checked,
+    v: 2
+  };
+  localStorage.setItem(QUOTE_KEY, JSON.stringify(payload));
+  // Guardar también en historial (máx 20)
+  const HIST_KEY = 'siluet_quote_history';
+  let history = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+  const idx = history.findIndex(item => item.quote.number === quoteData.quote.number);
+  if (idx >= 0) {
+    history[idx] = payload;
+  } else {
+    history.unshift(payload);
+  }
+  if (history.length > 20) history = history.slice(0, 20);
+  localStorage.setItem(HIST_KEY, JSON.stringify(history));
+}
+
+function nextFolio() {
+  const n = (parseInt(localStorage.getItem(FOLIO_KEY) || '0', 10) || 0) + 1;
+  localStorage.setItem(FOLIO_KEY, String(n));
+  return 'SP-' + String(n).padStart(4, '0');
+}
+
+// Set current date on load; restaurar cotización guardada si existe
+document.addEventListener('DOMContentLoaded', () => {
+  const today = new Date().toISOString().split('T')[0];
+  const saved = JSON.parse(localStorage.getItem(QUOTE_KEY) || 'null');
+  if (saved && saved.v === 2 && saved.products) {
+    Object.assign(quoteData.quote, saved.quote);
+    quoteData.products = saved.products;
+    if (saved.iva) document.getElementById('ivaToggle').checked = true;
+    document.getElementById('quoteValidity').value = quoteData.quote.validity || '15 días';
+  } else {
+    quoteData.quote.number = nextFolio();
+  }
+  quoteData.quote.date = today;
+  if (!/^SP-\d{4}$/.test(quoteData.quote.number)) quoteData.quote.number = nextFolio();
+  document.getElementById('quoteDate').value = quoteData.quote.date;
+  document.getElementById('clientName').value = quoteData.quote.client || '';
+  document.getElementById('clientPhone').value = quoteData.quote.phone || '';
+  document.getElementById('clientRfc').value = quoteData.quote.rfc || '';
+  document.getElementById('quoteNumber').value = quoteData.quote.number;
+  toggleIVA(document.getElementById('ivaToggle').checked);
+  renderProducts();
+  recalc();
+  initProductDatabase();
+});
+
+// ===== BASE DE DATOS DE PRODUCTOS (localStorage) =====
+const PRODUCT_DB_KEY = 'siluet_product_catalog';
+
+const initialProductCatalog = [
+  {
+    "name": "100 Repuestos de 12 de Dermapen Azules",
+    "price": 2500.0,
+    "url": "https://www.siluetperfect.shop/product-page/100-repuestos-de-12-de-dermapen-azules",
+    "img": "https://static.wixstatic.com/media/9b6407_78360209a7fa41f1b8fc9b9c3db3d500~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "100 Repuestos de 12 de Dermapen Blancos",
+    "price": 2500.0,
+    "url": "https://www.siluetperfect.shop/product-page/100-repuestos-de-12-de-dermapen-blancos",
+    "img": "https://static.wixstatic.com/media/9b6407_09950bda97104b77aeaf54d0d4d7e06e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "4 Arrays",
+    "price": 825.0,
+    "url": "https://www.siluetperfect.shop/product-page/4-arrays",
+    "img": "https://static.wixstatic.com/media/9b6407_9044ee28f1c043959bad1a3adec4401b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "50 Repuestos de 12 de Dermapen Azules",
+    "price": 1500.0,
+    "url": "https://www.siluetperfect.shop/product-page/50-repuestos-de-12-de-dermapen-azules",
+    "img": "https://static.wixstatic.com/media/9b6407_78360209a7fa41f1b8fc9b9c3db3d500~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "50 Repuestos de 12 de Dermapen Blancos",
+    "price": 1500.0,
+    "url": "https://www.siluetperfect.shop/product-page/50-repuestos-de-12-de-dermapen-blancos",
+    "img": "https://static.wixstatic.com/media/9b6407_09950bda97104b77aeaf54d0d4d7e06e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Accesorios Kit",
+    "price": 195.0,
+    "url": "https://www.siluetperfect.shop/product-page/accesorios-kit",
+    "img": "https://static.wixstatic.com/media/9b6407_1979d5cdd1424148bea8caf8f10fda91~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Aguja de Electrocauterio sin punta",
+    "price": 150.0,
+    "url": "https://www.siluetperfect.shop/product-page/aguja-de-electrocauterio-sin-punta",
+    "img": "https://static.wixstatic.com/media/9b6407_c6e8ad887aee4c73944a9867bc016f3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Agujas de electrocauterio con punta",
+    "price": 200.0,
+    "url": "https://www.siluetperfect.shop/product-page/agujas-de-electrocauterio-con-punta",
+    "img": "https://static.wixstatic.com/media/9b6407_c6e8ad887aee4c73944a9867bc016f3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Antiradiación",
+    "price": 80.0,
+    "url": "https://www.siluetperfect.shop/product-page/antiradiación",
+    "img": "https://static.wixstatic.com/media/9b6407_96079fcc030e4ceb8dbe0cc4f49c5cd0~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Babero",
+    "price": 90.0,
+    "url": "https://www.siluetperfect.shop/product-page/babero-rosa-o-morado",
+    "img": "https://static.wixstatic.com/media/9b6407_5eb1307377ea4f2b8a0868855f07a17b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Banda de tela",
+    "price": 50.0,
+    "url": "https://www.siluetperfect.shop/product-page/banda-de-tela",
+    "img": "https://static.wixstatic.com/media/9b6407_ede5f91502494a1e8eb1120b71e95e26~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bandita facial",
+    "price": 60.0,
+    "url": "https://www.siluetperfect.shop/product-page/bandita-facial",
+    "img": "https://static.wixstatic.com/media/9b6407_55fc712d649f41018e4a8e51e8b63d93~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bata",
+    "price": 150.0,
+    "url": "https://www.siluetperfect.shop/product-page/bata",
+    "img": "https://static.wixstatic.com/media/9b6407_a54a049727fc44beb0f929842e7b1d80~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bata Corta",
+    "price": 129.99,
+    "url": "https://www.siluetperfect.shop/product-page/bata-corta",
+    "img": "https://static.wixstatic.com/media/9b6407_dc6aff45a6ee495fa5f5bc0dd44c1d74~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bata Larga",
+    "price": 258.0,
+    "url": "https://www.siluetperfect.shop/product-page/bata-larga",
+    "img": "https://static.wixstatic.com/media/9b6407_47c2f41768014343ac9dcc1c9286ef50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bikini con elastico",
+    "price": 119.99,
+    "url": "https://www.siluetperfect.shop/product-page/bikini-con-elastico",
+    "img": "https://static.wixstatic.com/media/9b6407_054d3461f20449aab2828f0594a1acd5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bikini con elástico",
+    "price": 80.0,
+    "url": "https://www.siluetperfect.shop/product-page/bikini-con-elástico-rosa-o-morado",
+    "img": "https://static.wixstatic.com/media/9b6407_9556cf3341b24d5a941fdb59ba26af59~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Bowl de silicón",
+    "price": 49.0,
+    "url": "https://www.siluetperfect.shop/product-page/bowl-de-silicón",
+    "img": "https://static.wixstatic.com/media/9b6407_3503b7b16a444041b4fb1a6297d8209d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Boxer",
+    "price": 110.0,
+    "url": "https://www.siluetperfect.shop/product-page/boxer",
+    "img": "https://static.wixstatic.com/media/9b6407_aebf4e8402e840f587b157551a6fe164~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Boxer de caballero",
+    "price": 216.0,
+    "url": "https://www.siluetperfect.shop/product-page/boxer-de-caballero",
+    "img": "https://static.wixstatic.com/media/9b6407_ed9885afb60a434483b233fad84385a0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Brocha delgada de cerdas suaves",
+    "price": 29.0,
+    "url": "https://www.siluetperfect.shop/product-page/brocha-delgada-de-cerdas-suaves",
+    "img": "https://static.wixstatic.com/media/9b6407_33c4b92922cd4eb88c8f3961d5ad7689~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Brochas de cerdas suaves",
+    "price": 75.0,
+    "url": "https://www.siluetperfect.shop/product-page/brochas-de-cerdas-suaves",
+    "img": "https://static.wixstatic.com/media/9b6407_4ed33d238f894e9cbca895c4289310b8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Brochas de silicón",
+    "price": 75.0,
+    "url": "https://www.siluetperfect.shop/product-page/brochas-de-silicón",
+    "img": "https://static.wixstatic.com/media/9b6407_d99ce4e71ba047acb982f5c05263c69a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Burbuja de Hidrogeno",
+    "price": 8565.0,
+    "url": "https://www.siluetperfect.shop/product-page/burbuja-de-hidrogeno",
+    "img": "https://static.wixstatic.com/media/9b6407_1a45e55bbdfb4d7e9123a0baa870c693~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cabezal para Alta Frecuencia curvo",
+    "price": 220.0,
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-curvo",
+    "img": "https://static.wixstatic.com/media/9b6407_92abb0ab0be64352a80bbf01535aec79~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cabezal para Alta Frecuencia forma de Hongo",
+    "price": 280.0,
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-forma-de-hongo",
+    "img": "https://static.wixstatic.com/media/9b6407_77c16f7f99d64e92aa2cabd86a1c50df~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cabezal para Alta Frecuencia forma de Peine",
+    "price": 280.0,
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-forma-de-peine",
+    "img": "https://static.wixstatic.com/media/9b6407_88c83e27ae0e43289c7393e01bd1f4b2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cabezal para Alta Frecuencia recto",
+    "price": 220.0,
+    "url": "https://www.siluetperfect.shop/product-page/cabezal-para-alta-frecuencia-recto",
+    "img": "https://static.wixstatic.com/media/9b6407_bea329004de448c9a4b7eccba394b737~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cama Manual",
+    "price": 7995.0,
+    "url": "https://www.siluetperfect.shop/product-page/cama-manual-mcl",
+    "img": "https://static.wixstatic.com/media/9b6407_655154be1f3149cd8422998abb8f623b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Carboxiterapia",
+    "price": 35000.5,
+    "url": "https://www.siluetperfect.shop/product-page/carboxiterapia",
+    "img": "https://static.wixstatic.com/media/9b6407_d6a04005929742d9b89a79f6e4b46caf~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartucho HIFU",
+    "price": 6999.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-hifu",
+    "img": "https://static.wixstatic.com/media/9b6407_72c3fe8f93e04a52bfcc5a5dbb3fef3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartucho LIPOSONIX",
+    "price": 8990.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-liposonix",
+    "img": "https://static.wixstatic.com/media/9b6407_b0a82a7a8eba48cb978662b6823be87a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartucho de Hydrapen",
+    "price": 49.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-de-hydrapen",
+    "img": "https://static.wixstatic.com/media/9b6407_9c32f3d776914d72aaa6c187c12a4ad6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartucho para Mesoterapia",
+    "price": 149.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-para-mesoterapia",
+    "img": "https://static.wixstatic.com/media/9b6407_45fc0cc013664b06bb3a9761a1921e50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartucho y Jeringa de pistola de mesoterapia",
+    "price": 249.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartucho-y-jeringa-de-pistola-de-mesoterapia",
+    "img": "https://static.wixstatic.com/media/9b6407_51461af972454c1d8abd7f668cbe3ee9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cartuchos Hifu12D",
+    "price": 5500.0,
+    "url": "https://www.siluetperfect.shop/product-page/cartuchos-hifu12d",
+    "img": "https://static.wixstatic.com/media/9b6407_f83fef69b57344fdb569c91484332ece~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi 80K BB",
+    "price": 5985.0,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-80k-bb",
+    "img": "https://static.wixstatic.com/media/9b6407_6b01c9dad5ad456487a32c6b1f135cf2~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Aristorm 9 en 1 40k",
+    "price": 11950.0,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-aristorm-9-en-1-40k",
+    "img": "https://static.wixstatic.com/media/9b6407_b60de02e8cab4deeada01aa4c3e6724d~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Colors 10-1 Malva",
+    "price": 9399.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-10-1-malva",
+    "img": "https://static.wixstatic.com/media/9b6407_7402abca17294aff987234954c8d498d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Colors 8-1",
+    "price": 7499.0,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-8-1",
+    "img": "https://static.wixstatic.com/media/9b6407_40e3c1be74144772a3f4cf0ef49455da~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Colors 9-1",
+    "price": 8999.0,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-colors-9-1",
+    "img": "https://static.wixstatic.com/media/9b6407_4c9e3a857e98437abb07930d3b1e09b0~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Forever Living BB",
+    "price": 4500.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-living-bb",
+    "img": "https://static.wixstatic.com/media/9b6407_e83edf19a8f84623a3701ae6f0acf370~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Forever Living New",
+    "price": 7495.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-living-new",
+    "img": "https://static.wixstatic.com/media/9b6407_94088b5025be49f6b5399550e05fbe49~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Forever New",
+    "price": 4995.0,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-forever-new-color",
+    "img": "https://static.wixstatic.com/media/9b6407_b31e0005e7ef4a64a7c7e182ad3188b3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Max",
+    "price": 8945.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-max",
+    "img": "https://static.wixstatic.com/media/9b6407_1cd5f7d6dace4638b1a40e7acbdd9c78~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Musa 8 en 1",
+    "price": 13695.0,
+    "url": "https://www.siluetperfect.shop/product-page/8-1-cavi-musa",
+    "img": "https://static.wixstatic.com/media/9b6407_d2d0f95c048d4534b8e9a117fa47c1ba~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi One",
+    "price": 2600.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-one",
+    "img": "https://static.wixstatic.com/media/9b6407_3841d26a56774977938c8a8954e52c9f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Purple Digital",
+    "price": 7999.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-purple-digital",
+    "img": "https://static.wixstatic.com/media/9b6407_20527cffc3214c5b93e02abf57e1429c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Slim Black",
+    "price": 5799.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-black",
+    "img": "https://static.wixstatic.com/media/9b6407_afe64d70cf584c2fbdf8596203790151~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Star",
+    "price": 2899.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-star",
+    "img": "https://static.wixstatic.com/media/9b6407_12c2b86d51b0425cbf9b0ca086e3b2c5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Vacuum",
+    "price": 7900.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-vacuum",
+    "img": "https://static.wixstatic.com/media/9b6407_a53d1023ab0c42d9a1bb2f52370fbd9f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Wera",
+    "price": 23995.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-wera",
+    "img": "https://static.wixstatic.com/media/9b6407_9b3a311f5b6145649edd1e185dc13baa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavi Ying Yang",
+    "price": 4999.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavi-ying-yang",
+    "img": "https://static.wixstatic.com/media/9b6407_36f274ed065d41e3ab0c49b7552fe032~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cavitador 6 en 1",
+    "price": 10499.5,
+    "url": "https://www.siluetperfect.shop/product-page/cavitador-6-en-1",
+    "img": "https://static.wixstatic.com/media/9b6407_fa5307094ac14f7f895728932335e31e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Centrifuga de Laboratorio Clínico (220v)",
+    "price": 3500.5,
+    "url": "https://www.siluetperfect.shop/product-page/centrifuga-de-laboratorio-clínico-220v",
+    "img": "https://static.wixstatic.com/media/9b6407_b505db79c5644ff383b035cfa817439c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cepillo Rotativo Brush",
+    "price": 1257.5,
+    "url": "https://www.siluetperfect.shop/product-page/cepillo-rotativo-brush",
+    "img": "https://static.wixstatic.com/media/9b6407_d90c2d95777248b5b282767375eff539~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cleopatra 3 en 1",
+    "price": 7500.5,
+    "url": "https://www.siluetperfect.shop/product-page/cleopatra-3-en-1",
+    "img": "https://static.wixstatic.com/media/9b6407_e22b216c27504332807a5a8054c16f9a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Copa medidora",
+    "price": 18.0,
+    "url": "https://www.siluetperfect.shop/product-page/copa-medidora",
+    "img": "https://static.wixstatic.com/media/9b6407_e0b181db413146d698d5100fa796f154~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Copas de Vacío de metal",
+    "price": 1089.0,
+    "url": "https://www.siluetperfect.shop/product-page/copas-de-vacío-de-metal",
+    "img": "https://static.wixstatic.com/media/9b6407_da25df01e2d04b9088bcb2405af6b734~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cryo Black Duo",
+    "price": 25999.5,
+    "url": "https://www.siluetperfect.shop/product-page/cryo-black-duo",
+    "img": "https://static.wixstatic.com/media/9b6407_85a4920a4f8c4322a7d9ca68f3dc7247~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cryo Ice Look",
+    "price": 39990.5,
+    "url": "https://www.siluetperfect.shop/product-page/cryo-ice-look",
+    "img": "https://static.wixstatic.com/media/9b6407_1cd2b09a1e98477a84639e1abe3161fa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cryo Papada",
+    "price": 27990.5,
+    "url": "https://www.siluetperfect.shop/product-page/cryo-papada",
+    "img": "https://static.wixstatic.com/media/9b6407_37ec3a5917384fe9837387e633ffc519~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cryo Personal",
+    "price": 2850.0,
+    "url": "https://www.siluetperfect.shop/product-page/cryo-personal",
+    "img": "https://static.wixstatic.com/media/9b6407_f77205d6c66c426e9b0afa9f41fe2330~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Cryo RF Skin Cool",
+    "price": 6900.5,
+    "url": "https://www.siluetperfect.shop/product-page/cryo-rf-skin-cool",
+    "img": "https://static.wixstatic.com/media/9b6407_cc00f7ee7d424dcfb292c3c9d438051f~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Derma Pen Fotodinamico",
+    "price": 1999.5,
+    "url": "https://www.siluetperfect.shop/product-page/derma-pen-fotodinamico",
+    "img": "https://static.wixstatic.com/media/9b6407_d87a3be94b214064b7a6576ac5556474~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Derma Roller .20",
+    "price": 123.0,
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-20",
+    "img": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Derma Roller .50",
+    "price": 123.0,
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-50",
+    "img": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Derma Roller 1.0",
+    "price": 123.0,
+    "url": "https://www.siluetperfect.shop/product-page/derma-roller-1-0",
+    "img": "https://static.wixstatic.com/media/9b6407_305af65f018a4e42bd264e4324539165~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "DermaPen Baul",
+    "price": 2665.5,
+    "url": "https://www.siluetperfect.shop/product-page/derma-pen-baul",
+    "img": "https://static.wixstatic.com/media/9b6407_bf78575fb1a24780bc945e4db8f55d2f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Dermapen Silver",
+    "price": 599.5,
+    "url": "https://www.siluetperfect.shop/product-page/dermapen-silver",
+    "img": "https://static.wixstatic.com/media/9b6407_606596927f5c4c8e8dea9be624bfedc6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Dermollogy - Facial   BB Eyes",
+    "price": 1999.5,
+    "url": "https://www.siluetperfect.shop/product-page/dermollogy-facial",
+    "img": "https://static.wixstatic.com/media/9b6407_318b1295246649c59f97a05a302c8bd7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Detox Aqua Ionizador",
+    "price": 4805.5,
+    "url": "https://www.siluetperfect.shop/product-page/detox-aqua-ionizador",
+    "img": "https://static.wixstatic.com/media/9b6407_5159b0dca590416eb969c1628296c888~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Diatermia  360 Tenxa Max",
+    "price": 12990.5,
+    "url": "https://www.siluetperfect.shop/product-page/tridermia",
+    "img": "https://static.wixstatic.com/media/9b6407_0457ce13e090495c937680e019aee574~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Domo Galaxy",
+    "price": 3499.0,
+    "url": "https://www.siluetperfect.shop/product-page/domo-galaxy",
+    "img": "https://static.wixstatic.com/media/9b6407_0bff567362e84bcbae7cfeea51c3b8e5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Domo Vapor Red",
+    "price": 2999.5,
+    "url": "https://www.siluetperfect.shop/product-page/domo-vapor-red",
+    "img": "https://static.wixstatic.com/media/9b6407_0e4b1ab65071403a9ef7e33ddd7ffb13~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Dr. Pen Azul Inalámbrico",
+    "price": 1199.4,
+    "url": "https://www.siluetperfect.shop/product-page/dr-pen-azul-inalambrico",
+    "img": "https://static.wixstatic.com/media/9b6407_7f889b4e8f804f69963d994e6464bbbb~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Dr. Pen Rojo Alambrico",
+    "price": 499.5,
+    "url": "https://www.siluetperfect.shop/product-page/dr-pen-rojo-alambrico",
+    "img": "https://static.wixstatic.com/media/9b6407_85557da3a47448ca869523503a5031c3~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Electrocauterio MAGLEV",
+    "price": 899.5,
+    "url": "https://www.siluetperfect.shop/product-page/electrocauterio-manglev",
+    "img": "https://static.wixstatic.com/media/9b6407_44fe5862a47446a1b4b215b2562d4570~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Electrocauterio, PlasmaPen y Alta frecuencia",
+    "price": 3299.5,
+    "url": "https://www.siluetperfect.shop/product-page/electrocauterio-plasmapen-alta-frecuencia",
+    "img": "https://static.wixstatic.com/media/9b6407_c9f07dd02a4a406da61d2de694da8706~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Electroporador-Meso",
+    "price": 699.0,
+    "url": "https://www.siluetperfect.shop/product-page/electroporador-meso",
+    "img": "https://static.wixstatic.com/media/9b6407_7b96026d29864aec9657116ec1fd7ce2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Espatula",
+    "price": 25.0,
+    "url": "https://www.siluetperfect.shop/product-page/espatula",
+    "img": "https://static.wixstatic.com/media/9b6407_6c0782910be246fc8b326de2a96ce62f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Exi 360",
+    "price": 24999.0,
+    "url": "https://www.siluetperfect.shop/product-page/exi-360",
+    "img": "https://static.wixstatic.com/media/9b6407_0e428187e2cb4b9c8bde34142c2a84bb~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Faja",
+    "price": 399.0,
+    "url": "https://www.siluetperfect.shop/product-page/faja",
+    "img": "https://static.wixstatic.com/media/9b6407_f1c443a68fb44d9f85dfa625b3f0af0e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtro Laser Picossure",
+    "price": 3500.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtro-laser-picossure",
+    "img": "https://static.wixstatic.com/media/9b6407_4652e905d3754e4080686333cbe8603d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtro de Vacuum",
+    "price": 350.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtro-de-vacuum",
+    "img": "https://static.wixstatic.com/media/9b6407_7851b944e5dd45f0a48efb36e060e63d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtro para Picossure 1064 nm",
+    "price": 3500.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-picossure-1064-nm",
+    "img": "https://static.wixstatic.com/media/9b6407_b40e97b003a5420bbb6fdbdc2abf34f3~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtro para Picossure 532nm",
+    "price": 3500.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-picossure-532nm",
+    "img": "https://static.wixstatic.com/media/9b6407_bba1f7a2095f40beb3d66d70c3a7fb87~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtro para microdermoabrasión",
+    "price": 150.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtro-para-microdermoabrasión",
+    "img": "https://static.wixstatic.com/media/9b6407_539fd3f81877460b9679c2a4e1c935ab~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtros de Algodón CHICOS Para Microdermoabrasión",
+    "price": 100.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtros-de-algodón-chicos-para-microdermoabrasión",
+    "img": "https://static.wixstatic.com/media/9b6407_248042b02ad94b8abdeb546badd6bde9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Filtros de Algodón GRANDES Para Microdermoabrasion",
+    "price": 100.0,
+    "url": "https://www.siluetperfect.shop/product-page/filtros-de-algodón-grandes-para-microdermoabrasion",
+    "img": "https://static.wixstatic.com/media/9b6407_248042b02ad94b8abdeb546badd6bde9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Funda de almohada",
+    "price": 95.0,
+    "url": "https://www.siluetperfect.shop/product-page/funda-almohada-rosa-o-morado",
+    "img": "https://static.wixstatic.com/media/9b6407_4991f98c6f384dbcb5dffd44b8af15e7~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Funda para careta",
+    "price": 169.0,
+    "url": "https://www.siluetperfect.shop/product-page/funda-para-careta",
+    "img": "https://static.wixstatic.com/media/9b6407_ff7fb0765cc34b2b99c4988d62d86102~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Fundas blanco o negro",
+    "price": 60.0,
+    "url": "https://www.siluetperfect.shop/product-page/fundas-blanco-o-negro",
+    "img": "https://static.wixstatic.com/media/9b6407_29e822d864984efbaade5c1cfb077fd7~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "G5 Maletín",
+    "price": 4515.5,
+    "url": "https://www.siluetperfect.shop/product-page/g5-maletín",
+    "img": "https://static.wixstatic.com/media/9b6407_44581062dd1d4ba3a8ada7d8462e7223~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Galvánica",
+    "price": 865.5,
+    "url": "https://www.siluetperfect.shop/product-page/galvánica",
+    "img": "https://static.wixstatic.com/media/9b6407_867afa58160049e291ba85d910765221~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Gimnasia Pasiva Española",
+    "price": 4200.5,
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-española",
+    "img": "https://static.wixstatic.com/media/9b6407_dccaf496d6ca445c9e8bae447567d9f3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Gimnasia Pasiva Gluteos",
+    "price": 150.0,
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-gluteos",
+    "img": "https://static.wixstatic.com/media/9b6407_3bfd05219c9640369e5f29fbf12918d6~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Gimnasia Pasiva Green",
+    "price": 3995.0,
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-green",
+    "img": "https://static.wixstatic.com/media/9b6407_c0d72d305ce640199d3647b8f7f72ff1~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Gimnasia Pasiva Portable",
+    "price": 1595.5,
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-portable",
+    "img": "https://static.wixstatic.com/media/9b6407_46c8d84db7624c13a439e0d9c029d2f9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Gimnasia Pasiva con Vacuum Retro",
+    "price": 5499.0,
+    "url": "https://www.siluetperfect.shop/product-page/gimnasia-pasiva-con-vacuum-retro",
+    "img": "https://static.wixstatic.com/media/9b6407_655ab98538894841a7ad15d2449f8c8b~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Guantes de latex natural (no esteril)",
+    "price": 350.0,
+    "url": "https://www.siluetperfect.shop/product-page/guantes-de-latex-natural-no-esteril",
+    "img": "https://static.wixstatic.com/media/9b6407_5d885f7b4631491fa626c05f6798c908~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Guantes para cavitación",
+    "price": 158.0,
+    "url": "https://www.siluetperfect.shop/product-page/guantes-para-cavitación",
+    "img": "https://static.wixstatic.com/media/9b6407_d01b61d75ef74b41a17f175e784cb261~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "HIFU Personal",
+    "price": 2145.5,
+    "url": "https://www.siluetperfect.shop/product-page/hifu-personal",
+    "img": "https://static.wixstatic.com/media/9b6407_1fe3f4bf6244494d97b8f4eadbe27e93~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidro 14-1",
+    "price": 24990.0,
+    "url": "https://www.siluetperfect.shop/product-page/hidro-14-1",
+    "img": "https://static.wixstatic.com/media/9b6407_0fc519668ec84a53b18e4e933690fc7d~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidro Lsix Core",
+    "price": 9999.5,
+    "url": "https://www.siluetperfect.shop/product-page/lsix-core",
+    "img": "https://static.wixstatic.com/media/9b6407_233739a3ba614b45bba22d98036edbb8~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidro Micro Aqua Colors",
+    "price": 6995.5,
+    "url": "https://www.siluetperfect.shop/product-page/hidro-micro-aqua-colors",
+    "img": "https://static.wixstatic.com/media/9b6407_a69039e1e2e048eab87cf4fbf05481a9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidro Minion 6-1",
+    "price": 4800.5,
+    "url": "https://www.siluetperfect.shop/product-page/hidro-minion-6-1",
+    "img": "https://static.wixstatic.com/media/9b6407_6ec92aac6fe5495c9b4d4c2678b896f4~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidrofacial 7 en 1",
+    "price": 4990.5,
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-7-en-1",
+    "img": "https://static.wixstatic.com/media/9b6407_63c7514d03d54850b5100f70b4a1b6a2~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidrofacial 7 en 1 Aqua Peel",
+    "price": 5995.5,
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-7-en-1-aqua-peel",
+    "img": "https://static.wixstatic.com/media/9b6407_89f1ec25df7d4ee38b643a450d1b4d50~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hidrofacial Personal",
+    "price": 906.5,
+    "url": "https://www.siluetperfect.shop/product-page/hidrofacial-personal",
+    "img": "https://static.wixstatic.com/media/9b6407_9a5e7ed8f519491a9d7a4b168d1c48a4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hifu 25D 360 Pro Max",
+    "price": 40995.0,
+    "url": "https://www.siluetperfect.shop/product-page/hifu-25d-360-pro-max",
+    "img": "https://static.wixstatic.com/media/9b6407_7b3eb8a3298d4d3dbee3bee75057c115~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Hifu V-max",
+    "price": 4999.0,
+    "url": "https://www.siluetperfect.shop/product-page/hifu-v-max-1",
+    "img": "https://static.wixstatic.com/media/9b6407_62e4bbd0340a43a28d0f3d23d06f4564~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "IPL GOLDEN",
+    "price": 13995.5,
+    "url": "https://www.siluetperfect.shop/product-page/ipl-golden-1",
+    "img": "https://static.wixstatic.com/media/9b6407_b35bb29bc3644bf2874d7d9ab590aff6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "IPL Personal",
+    "price": 1799.5,
+    "url": "https://www.siluetperfect.shop/product-page/ipl-personal",
+    "img": "https://static.wixstatic.com/media/9b6407_0e3742fda9224801b78afbb69efa1376~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ice Roller",
+    "price": 195.0,
+    "url": "https://www.siluetperfect.shop/product-page/ice-roller",
+    "img": "https://static.wixstatic.com/media/9b6407_b86784655cce4cf9a96440c6a1e7dfbf~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit Bandas Elasticas Con Velcro",
+    "price": 600.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-bandas-elasticas-con-velcro",
+    "img": "https://static.wixstatic.com/media/9b6407_6f0f3a0fd70f4006bdb8577aea02cff6~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit Parches Gimnasia Pasiva",
+    "price": 2800.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-parches-gimnasia-pasiva",
+    "img": "https://static.wixstatic.com/media/9b6407_1ade7e01b74240e3969167dedd76bc67~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit Puntas de Hidrofacial",
+    "price": 750.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-puntas-de-hidrofacial-1",
+    "img": "https://static.wixstatic.com/media/9b6407_636bc710e0184e5c9a990a96db292906~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit de Puntas de Diamante para Microdermoabrasion (Completo)",
+    "price": 694.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-completo",
+    "img": "https://static.wixstatic.com/media/9b6407_deac34133cf543ab927c4166adf0d25f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit de Puntas de Diamante para Microdermoabrasion Chicas",
+    "price": 286.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-chicas",
+    "img": "https://static.wixstatic.com/media/9b6407_b0958e7b08f34b99a4e4d202f075a0a3~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit de Puntas de Diamante para Microdermoabrasion Grandes",
+    "price": 528.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-puntas-de-diamante-para-microdermoabrasion-grandes",
+    "img": "https://static.wixstatic.com/media/9b6407_38006ca37c314f3ab5c5cef3b3d44d6b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit de copas de Vacuum",
+    "price": 1499.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-copas-de-vacuum",
+    "img": "https://static.wixstatic.com/media/9b6407_bee62a73485b4b36a4a614014f1fbb6c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Kit de electrodos para alta frecuencia",
+    "price": 741.0,
+    "url": "https://www.siluetperfect.shop/product-page/kit-de-electrodos-para-alta-frecuencia",
+    "img": "https://static.wixstatic.com/media/9b6407_6dbd1662f55a42c3b2e0bab179ca0c0f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lampara Wood",
+    "price": 1400.5,
+    "url": "https://www.siluetperfect.shop/product-page/camara-de-wood-portable",
+    "img": "https://static.wixstatic.com/media/9b6407_547a292b2c26481d8e27fe13a8e12fbb~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser Tri Diodo Titanium",
+    "price": 35990.0,
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-titanium",
+    "img": "https://static.wixstatic.com/media/9b6407_c669e875434f42618efdf09128b8b965~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser Tri Diodo con Picossure Ice Blue",
+    "price": 55000.0,
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-con-picossure-ice-blue",
+    "img": "https://static.wixstatic.com/media/9b6407_55814421e9d944bdbcd38bd99c40f850~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser Tridiodo Tipo ZP ice 360 + Picolaser No Invasivo",
+    "price": 99990.5,
+    "url": "https://www.siluetperfect.shop/product-page/laser-tridiodo-sopra-no-ice-360-picolaser-no-invasivo",
+    "img": "https://static.wixstatic.com/media/9b6407_81a006d0586847a1b8b16da56a3b3407~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser White Tri Diodo",
+    "price": 18000.0,
+    "url": "https://www.siluetperfect.shop/product-page/laser-white-tri-diodo",
+    "img": "https://static.wixstatic.com/media/9b6407_37ee720771974fbf86bee17f0e9da609~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser diodo Tomas 808 ZP",
+    "price": 13500.5,
+    "url": "https://www.siluetperfect.shop/product-page/laser-diodo-tomas-808-zp",
+    "img": "https://static.wixstatic.com/media/9b6407_aed3ed27808742d08b7b591e2d39f45e~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Laser tri diodo con Picossure",
+    "price": 35000.0,
+    "url": "https://www.siluetperfect.shop/product-page/laser-tri-diodo-con-picossure",
+    "img": "https://static.wixstatic.com/media/9b6407_c72797f4a62449be92450270081dfeec~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lentes Goggles Ciegos para Paciente",
+    "price": 165.0,
+    "url": "https://www.siluetperfect.shop/product-page/lentes-goggles-ciegos-para-paciente",
+    "img": "https://static.wixstatic.com/media/9b6407_cda97e7e2e4d4d30a4ad77a20698fbdf~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lentes para IPL - Uso del Profesional",
+    "price": 462.0,
+    "url": "https://www.siluetperfect.shop/product-page/lentes-para-ipl-uso-del-profesional",
+    "img": "https://static.wixstatic.com/media/9b6407_7183980315eb4f0e87a668bd19a39130~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lipax",
+    "price": 999.0,
+    "url": "https://www.siluetperfect.shop/product-page/lipax",
+    "img": "https://static.wixstatic.com/media/9b6407_fae060b28be54665b1fde2dfa935cffc~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lipo Cavi Musa 9 en 1",
+    "price": 19995.5,
+    "url": "https://www.siluetperfect.shop/product-page/lipo-cavi-musa-9-en-1",
+    "img": "https://static.wixstatic.com/media/9b6407_2b710180ff6c4152acd9eb7133883176~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lipo Cavi Musa Shape",
+    "price": 23199.5,
+    "url": "https://www.siluetperfect.shop/product-page/lipo-cavi-musa-shape",
+    "img": "https://static.wixstatic.com/media/9b6407_fb993c9618a64ef0a859bcfef95e38e2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lipofrost",
+    "price": 45990.5,
+    "url": "https://www.siluetperfect.shop/product-page/lipofrost",
+    "img": "https://static.wixstatic.com/media/9b6407_63e95c9880764b67aec49908bb3c163b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lámpara de LED con Lupa para Faciales - 5X",
+    "price": 987.0,
+    "url": "https://www.siluetperfect.shop/product-page/lámpara-de-led-con-lupa-para-faciales-5x",
+    "img": "https://static.wixstatic.com/media/9b6407_8fc891718ff34ea496bf6d443c97741c~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Lámpara de pedestal",
+    "price": 999.0,
+    "url": "https://www.siluetperfect.shop/product-page/lampara-de-pedestal",
+    "img": "https://static.wixstatic.com/media/9b6407_22468db0a264469c99e80c896befcd03~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "MEMBRANA PARA HIFU GOLDEN",
+    "price": 300.0,
+    "url": "https://www.siluetperfect.shop/product-page/membrana-para-hifu-golden",
+    "img": "https://static.wixstatic.com/media/9b6407_c06c9630b1a04a5d8d506f9eba0e1fa1~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Manguera Lisa",
+    "price": 300.0,
+    "url": "https://www.siluetperfect.shop/product-page/manguera-lisa",
+    "img": "https://static.wixstatic.com/media/9b6407_6ec99b7f87e7408c8998acc6bea11e5b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Manguera Y delgada",
+    "price": 400.0,
+    "url": "https://www.siluetperfect.shop/product-page/manguera-y-delgada",
+    "img": "https://static.wixstatic.com/media/9b6407_f0e292ab5b8343f4af762043a72144df~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Manta térmica",
+    "price": 3495.5,
+    "url": "https://www.siluetperfect.shop/product-page/manta-térmica",
+    "img": "https://static.wixstatic.com/media/9b6407_31a31b482bb44e3f908aad04034342d2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Martillo Frio-Calor",
+    "price": 1395.5,
+    "url": "https://www.siluetperfect.shop/product-page/martillo-frio-calor",
+    "img": "https://static.wixstatic.com/media/9b6407_c7a488cba36f476aa561da05105e5ee6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mascara de Carbón Activado",
+    "price": 220.0,
+    "url": "https://www.siluetperfect.shop/product-page/mascara-de-carbón-activado-1",
+    "img": "https://static.wixstatic.com/media/9b6407_ec309e5afd99461e9b32de230b23e1d1~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mascara de carbón activado",
+    "price": 280.0,
+    "url": "https://www.siluetperfect.shop/product-page/mascara-de-carbón-activado",
+    "img": "https://static.wixstatic.com/media/9b6407_548cb314f3664475b713ec026d61a540~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Medusa EMS RF",
+    "price": 3300.5,
+    "url": "https://www.siluetperfect.shop/product-page/medusa-ems-rf",
+    "img": "https://static.wixstatic.com/media/9b6407_d126c8cf0cc14d96b77a3d090491c882~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Membrana Cryolipolisis (10 pzs)",
+    "price": 800.0,
+    "url": "https://www.siluetperfect.shop/product-page/membrana-cryolipolisis-28-x-28-cm",
+    "img": "https://static.wixstatic.com/media/9b6407_e72e95de4f594684b59297402bec8d78~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Membrana para HIFU Profesional",
+    "price": 300.0,
+    "url": "https://www.siluetperfect.shop/product-page/membrana-para-hifu-profesional",
+    "img": "https://static.wixstatic.com/media/9b6407_3f28c72c4b404689b56251d465bc67a8~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa Auxiliar Delux",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-auxiliar-delux",
+    "img": "https://static.wixstatic.com/media/9b6407_032a417107df4baf8bc5662c66a0e4fb~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa Colors Acero Blanca",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-colors-acero-blanca",
+    "img": "https://static.wixstatic.com/media/9b6407_53de639b4df84bb6929dc214d739c9cd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa Colors Acero Rosa",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-colors-acero-rosa",
+    "img": "https://static.wixstatic.com/media/9b6407_2b133a8fabf84d1babf8889b09e7fa84~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa Cristal",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-cristal",
+    "img": "https://static.wixstatic.com/media/9b6407_21916cb23bc646f08fe1ab6c387114ed~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa Diamante",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-diamante",
+    "img": "https://static.wixstatic.com/media/9b6407_c4ea435c0d414d3aaaed8e78119cdbb6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesa eléctrica laser para equipos pesados",
+    "price": 7995.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesa-eléctrica-laser-para-equipos-pesados",
+    "img": "https://static.wixstatic.com/media/9b6407_7ef046b0ee1c4069bf106ab6182b25dd~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mesoterapia  Inalámbrica",
+    "price": 899.0,
+    "url": "https://www.siluetperfect.shop/product-page/mesoterapia-inalámbrica",
+    "img": "https://static.wixstatic.com/media/9b6407_2f521978ff7141d2b0709fb6756ac23f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Micro 5 en 1 Digital",
+    "price": 6999.5,
+    "url": "https://www.siluetperfect.shop/product-page/microdermoabrasión-digital",
+    "img": "https://static.wixstatic.com/media/9b6407_511652f7e1a1455eb2c50d466179c30b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Micro 5-1 Analoga",
+    "price": 5500.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-5-1-analoga",
+    "img": "https://static.wixstatic.com/media/9b6407_ac0bf469597745dea6fbb57483a3a055~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Micro Esfera",
+    "price": 2400.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-esfera",
+    "img": "https://static.wixstatic.com/media/9b6407_f38aadf9ec634af5be70e22f60d5c76d~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Micro One",
+    "price": 1990.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-one",
+    "img": "https://static.wixstatic.com/media/9b6407_e89f7d65c6974ad5b980506559903ec0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Micro Portable",
+    "price": 799.5,
+    "url": "https://www.siluetperfect.shop/product-page/microdermoabrasión-portable",
+    "img": "https://static.wixstatic.com/media/9b6407_00de4b777c474a939551fe1f148a946a~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "MicroHidro Pink 2-1",
+    "price": 4845.5,
+    "url": "https://www.siluetperfect.shop/product-page/microhidro-pink-2-1",
+    "img": "https://static.wixstatic.com/media/9b6407_02f941ba99394799b3070825df54a1c2~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Microcircuk",
+    "price": 1980.5,
+    "url": "https://www.siluetperfect.shop/product-page/microcircuk",
+    "img": "https://static.wixstatic.com/media/9b6407_bf1d510e8b6645bc87d42abfcc4c1ef0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Microdermoabrasión Profesional",
+    "price": 2995.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-profesional",
+    "img": "https://static.wixstatic.com/media/9b6407_48d0b54681a1424ebe6128385982bec2~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Microdermoabrasión con Alta Frecuencia",
+    "price": 3990.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-alta-frecuencia",
+    "img": "https://static.wixstatic.com/media/9b6407_82d7731666794c1a987f498216cf6348~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Microdermoabrasión con Radiofrecuencia",
+    "price": 4995.5,
+    "url": "https://www.siluetperfect.shop/product-page/micro-radiofrecuencia",
+    "img": "https://static.wixstatic.com/media/9b6407_175933d1b68a42d49a4d8da421334bf0~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Mini Ultrasonido Facial Y Corporal",
+    "price": 599.5,
+    "url": "https://www.siluetperfect.shop/product-page/mini-ultrasonido-2mhz-facial-y-corporal",
+    "img": "https://static.wixstatic.com/media/9b6407_5d22036eb8d94b23adf105657c2f59fd~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Multifuncional 4-1",
+    "price": 4615.5,
+    "url": "https://www.siluetperfect.shop/product-page/multifuncional-4-1",
+    "img": "https://static.wixstatic.com/media/9b6407_e7fe95ff67934bde9c7be562695df69a~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Multifuncional FYC",
+    "price": 11500.5,
+    "url": "https://www.siluetperfect.shop/product-page/multifuncional-fyc",
+    "img": "https://static.wixstatic.com/media/9b6407_37ca9c95bb2045709af4f8160a4456a3~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Máscara con cuello fototerapia luz fotodinámica 7 colores",
+    "price": 1299.5,
+    "url": "https://www.siluetperfect.shop/product-page/máscara-con-cuello-fototerapia-luz-fotodinámica-7-colores",
+    "img": "https://static.wixstatic.com/media/9b6407_eea51b346e084fe38b055eddff6018f1~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Máscara fototerapia luz fotodinámica 7 colores",
+    "price": 999.5,
+    "url": "https://www.siluetperfect.shop/product-page/máscara-fototerapia-luz-fotodinámica-7-colores",
+    "img": "https://static.wixstatic.com/media/9b6407_6084805270c44c33a03429c3f5afcae9~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Nano RF Fraccionado",
+    "price": 8900.5,
+    "url": "https://www.siluetperfect.shop/product-page/nano-rf-fraccionado",
+    "img": "https://static.wixstatic.com/media/9b6407_735c19cf02604c12bf4f2a9f67b62f0d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "NeeBright Kit",
+    "price": 1575.0,
+    "url": "https://www.siluetperfect.shop/product-page/neebright-kit",
+    "img": "https://static.wixstatic.com/media/9b6407_9543bcb9ba5442e9bb7fe8f029abc33f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "NeeRevive Kit",
+    "price": 1575.0,
+    "url": "https://www.siluetperfect.shop/product-page/neerevive-kit",
+    "img": "https://static.wixstatic.com/media/9b6407_ff939b3b53b1473bbb0b5a4bd1e0ed5f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ondas de choque",
+    "price": 7500.5,
+    "url": "https://www.siluetperfect.shop/product-page/ondas-de-choque",
+    "img": "https://static.wixstatic.com/media/9b6407_6afa1a1bcd9e44bdbd7d9d61533b41fe~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Oxygen Spray",
+    "price": 599.0,
+    "url": "https://www.siluetperfect.shop/product-page/oxygen-spray",
+    "img": "https://static.wixstatic.com/media/9b6407_4105d1b85ef343ba9a820c9f83385a61~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Pantufla",
+    "price": 85.0,
+    "url": "https://www.siluetperfect.shop/product-page/pantufla",
+    "img": "https://static.wixstatic.com/media/9b6407_b755199799594809a7eda5e1984d3f23~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Picosure Personal",
+    "price": 1995.5,
+    "url": "https://www.siluetperfect.shop/product-page/picosure-personal",
+    "img": "https://static.wixstatic.com/media/9b6407_2458e11936c043efa543b23baf5f0dbf~mv2.webp/v1/fit/w_500,h_500,q_90/file.webp",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Pistola Mesoterapia",
+    "price": 1999.0,
+    "url": "https://www.siluetperfect.shop/product-page/pistola-mesoterapia",
+    "img": "https://static.wixstatic.com/media/9b6407_8f541d371a3b4b4c83f006cee4e0ccdc~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Presoterapia Purple",
+    "price": 7999.0,
+    "url": "https://www.siluetperfect.shop/product-page/presoterapia-purple",
+    "img": "https://static.wixstatic.com/media/9b6407_9bb33d699bc64ec1a80323988e5f47d9~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Presoterapia Silver",
+    "price": 15999.5,
+    "url": "https://www.siluetperfect.shop/product-page/presoterapia-silver-1",
+    "img": "https://static.wixstatic.com/media/9b6407_feb6b8c03b3b41898a66eb5bab088c53~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "RF 360",
+    "price": 4995.0,
+    "url": "https://www.siluetperfect.shop/product-page/rf-360",
+    "img": "https://static.wixstatic.com/media/9b6407_7687d0ebc99d4c2cb9a5b5a98db0c383~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "RF Adios Papada",
+    "price": 445.5,
+    "url": "https://www.siluetperfect.shop/product-page/adios-papada",
+    "img": "https://static.wixstatic.com/media/9b6407_8c80a5aed2da4c518bec7fefd4a8e037~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "RF One",
+    "price": 2595.5,
+    "url": "https://www.siluetperfect.shop/product-page/rf-one",
+    "img": "https://static.wixstatic.com/media/9b6407_5eb01b80e8294b7ab5e2010a63097e3a~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "RF Star",
+    "price": 2899.5,
+    "url": "https://www.siluetperfect.shop/product-page/rf-star",
+    "img": "https://static.wixstatic.com/media/9b6407_bb9689ce2a73435fadd6c1459321b678~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Radio Frecuencia Profesional",
+    "price": 84995.0,
+    "url": "https://www.siluetperfect.shop/product-page/radio-frecuencia-profesional",
+    "img": "",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Radio frecuencia de ojos",
+    "price": 10500.5,
+    "url": "https://www.siluetperfect.shop/product-page/cuio",
+    "img": "https://static.wixstatic.com/media/9b6407_c1a1ca08f30442a0a2ff14e3e74a334e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Radiofrecuencia Facial Mini",
+    "price": 1122.0,
+    "url": "https://www.siluetperfect.shop/product-page/radiofrecuencia-facial-mini",
+    "img": "https://static.wixstatic.com/media/9b6407_9255ce3a2c034f9a9e88e873fb0cecae~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Radiofrecuencia Triangular",
+    "price": 2999.5,
+    "url": "https://www.siluetperfect.shop/product-page/radiofrecuencia-triangular",
+    "img": "https://static.wixstatic.com/media/9b6407_d35c1a32059748c1a2338ac04d0af0d7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Repuesto de 12 para Derma-Pen",
+    "price": 350.0,
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-12-para-derma-pen",
+    "img": "https://static.wixstatic.com/media/9b6407_1a0ab0e0cc43435e855069258a6a91b4~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Repuesto de 12 para Dr. Pen Azul",
+    "price": 350.0,
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-12-para-dr-pen-azul",
+    "img": "https://static.wixstatic.com/media/9b6407_5177e3a8065747c483df821e411bba08~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Repuesto de Hialuronico Pen",
+    "price": 38.0,
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-hialuronico-pen",
+    "img": "https://static.wixstatic.com/media/9b6407_10f198f133b0481cb4011bf16e8fb8fa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Repuesto de Hialuronico Pen",
+    "price": 38.0,
+    "url": "https://www.siluetperfect.shop/product-page/repuesto-de-hialuronico-pen-1",
+    "img": "https://static.wixstatic.com/media/9b6407_51fdc4e3f758418887651dec98e71d8c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Resistencia para Vapor",
+    "price": 1200.0,
+    "url": "https://www.siluetperfect.shop/product-page/resistencia-para-vapor",
+    "img": "https://static.wixstatic.com/media/9b6407_76a98ebd2f67461aac9bc7dc9d715539~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Rodillo Facial Dorado",
+    "price": 170.0,
+    "url": "https://www.siluetperfect.shop/product-page/rodillo-facial-dorado",
+    "img": "https://static.wixstatic.com/media/9b6407_5c13bd0344344310b00e348c7358f67e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Sabana con elástico",
+    "price": 220.0,
+    "url": "https://www.siluetperfect.shop/product-page/sabana-con-elástico",
+    "img": "https://static.wixstatic.com/media/9b6407_267d8aa42fe146d59b2d14febaaff8f6~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Sabana lisa",
+    "price": 230.0,
+    "url": "https://www.siluetperfect.shop/product-page/sabana-lisa",
+    "img": "https://static.wixstatic.com/media/9b6407_c44319f6a3ac4a7ca3088e2c2d538c4b~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Sacacomedones",
+    "price": 349.0,
+    "url": "https://www.siluetperfect.shop/product-page/sacacomedones",
+    "img": "https://static.wixstatic.com/media/9b6407_32d9feb09ae94b149d54a62e60b9568c~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Sani Life",
+    "price": 699.5,
+    "url": "https://www.siluetperfect.shop/product-page/sani-life",
+    "img": "https://static.wixstatic.com/media/9b6407_24ce086c45934bcea39f2991bc48dbd5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Silla Hidraulica",
+    "price": 2499.0,
+    "url": "https://www.siluetperfect.shop/product-page/silla-hidraulica",
+    "img": "https://static.wixstatic.com/media/9b6407_16248e1acacb4fcd9f55adebca3a39e5~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Skin Scrubber NOVA Digital",
+    "price": 490.5,
+    "url": "https://www.siluetperfect.shop/product-page/skin-scrubber-nova-digital",
+    "img": "https://static.wixstatic.com/media/9b6407_13c98e3def9d4b46be83c4d2d6f7ac3b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Solución para Hidrofacial",
+    "price": 550.0,
+    "url": "https://www.siluetperfect.shop/product-page/solución-para-hydrafacial",
+    "img": "https://static.wixstatic.com/media/9b6407_c2fb06e049a44f91ad06859847dfc507~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Strong Table",
+    "price": 1995.0,
+    "url": "https://www.siluetperfect.shop/product-page/strong-table",
+    "img": "https://static.wixstatic.com/media/9b6407_9d6b714d0d69406cb9b1b8546d2f42e7~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Tanga Estandar",
+    "price": 55.0,
+    "url": "https://www.siluetperfect.shop/product-page/tanga-estandar",
+    "img": "https://static.wixstatic.com/media/9b6407_8f90265f845b42e3acd5022823b29d2f~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Tensa Maxxxx",
+    "price": 10995.0,
+    "url": "https://www.siluetperfect.shop/product-page/diatermia-pro",
+    "img": "https://static.wixstatic.com/media/9b6407_94691bd0372443c3922c43a91726d390~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Top con tirante",
+    "price": 65.0,
+    "url": "https://www.siluetperfect.shop/product-page/top-con-tirante",
+    "img": "https://static.wixstatic.com/media/9b6407_b8f86c919ec74889be1bba42ce83caf2~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido 1 MHZ",
+    "price": 810.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1-mhz",
+    "img": "https://static.wixstatic.com/media/9b6407_61c65e0b7b304f208c58111d25c26c35~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido 1 y 3 Mhz Profesional",
+    "price": 5999.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1-y-3-mhz-profesional",
+    "img": "https://static.wixstatic.com/media/9b6407_de3e737663eb455b91626f74ee87499e~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido 1Mhz con Guantes de Electroestimulación",
+    "price": 999.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-1mhz-con-guantes",
+    "img": "https://static.wixstatic.com/media/9b6407_2434305183104fd3bac49fff7477e94a~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido 2 Cabezales",
+    "price": 750.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-2-cabezales",
+    "img": "https://static.wixstatic.com/media/9b6407_ffeb923b0fc84fbb921ced0808b7356b~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido Eve",
+    "price": 1599.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-eve",
+    "img": "https://static.wixstatic.com/media/9b6407_77b72100681d44409fd0b66cab1d54b9~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido Facial 1mhz 2 Cabezales",
+    "price": 1600.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-facial-1mhz-2-cabezales",
+    "img": "https://static.wixstatic.com/media/9b6407_5ed8627b163b48b69f7b5f31c52cbc67~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido Pink",
+    "price": 999.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-pink",
+    "img": "https://static.wixstatic.com/media/9b6407_f39ddd77f9f742328033b752d056d444~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido QUIU",
+    "price": 2700.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-quiu",
+    "img": "https://static.wixstatic.com/media/9b6407_65e83fd9120b4cf79b03b32897951ff6~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido con Microdermoabrasión",
+    "price": 3495.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-micro",
+    "img": "https://static.wixstatic.com/media/9b6407_b0fbf05b60134f4f8c604c3f2cf6a15b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Ultrasonido con electrocauterio",
+    "price": 999.5,
+    "url": "https://www.siluetperfect.shop/product-page/ultrasonido-con-electrocauterio",
+    "img": "https://static.wixstatic.com/media/9b6407_f9ddc8653f874ab3b3941ee20473eafa~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Vacuum Eco Acero",
+    "price": 3510.5,
+    "url": "https://www.siluetperfect.shop/product-page/vacuum-eco-acero",
+    "img": "https://static.wixstatic.com/media/9b6407_b7b3f9b1e5ff4ca69f85cd9417808f1c~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Vapor Analogo",
+    "price": 870.5,
+    "url": "https://www.siluetperfect.shop/product-page/vapor-analogo",
+    "img": "https://static.wixstatic.com/media/9b6407_7d4436e8ec5a4412b7a49d0437ce9aa8~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Vapor Frio Calor",
+    "price": 1932.5,
+    "url": "https://www.siluetperfect.shop/product-page/vapor-frio-calor",
+    "img": "https://static.wixstatic.com/media/9b6407_a639d68de90649fb88fc0b28f04e2cb7~mv2.png/v1/fit/w_500,h_500,q_90/file.png",
+    "category": "Siluet Perfect"
+  },
+  {
+    "name": "Vaso Vapor de Ozono",
+    "price": 600.0,
+    "url": "https://www.siluetperfect.shop/product-page/vaso-vapor-de-ozono",
+    "img": "https://static.wixstatic.com/media/9b6407_f306e8dd1b8b48aaa6d32e4888d737b8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+    "category": "Siluet Perfect"
+  }
+];
+
+function initProductDatabase() {
+  // Sincronizar catálogo con productos descargados
+  localStorage.setItem(PRODUCT_DB_KEY, JSON.stringify(initialProductCatalog));
+  console.log('Catálogo sincronizado:', initialProductCatalog.length, 'productos.');
+}
+
+function getProductFromDB(name) {
+  const catalog = JSON.parse(localStorage.getItem(PRODUCT_DB_KEY) || '[]');
+  const normalizedName = name.toLowerCase().trim();
+  return catalog.find(p => p.name.toLowerCase().trim() === normalizedName) || null;
+}
+
+function searchProducts(query) {
+  const catalog = JSON.parse(localStorage.getItem(PRODUCT_DB_KEY) || '[]');
+  const q = query.toLowerCase().trim();
+  return catalog.filter(p => p.name.toLowerCase().includes(q));
+}
+
+// ===== BÚSQUEDA DE PRECIO EN siluetperfect.shop =====
+// Deshabilitada para modo 100% local (requiere red + CORS proxy)
+// async function lookupPriceFromShop(productName) { ... }
+
+// ===== RENDER =====
+function renderCompany() {
+  document.getElementById('companyName').textContent = quoteData.company.name;
+  document.getElementById('companyRFC').textContent = `RFC: ${quoteData.company.rfc}`;
+  document.getElementById('companyAddress').textContent = quoteData.company.address;
+  document.getElementById('companyContact').textContent = quoteData.company.contact;
+  const logoContainer = document.getElementById('logoContainer');
+  if (quoteData.company.logo) {
+    logoContainer.innerHTML = `<img src="${quoteData.company.logo}" alt="Logo ${quoteData.company.name}">`;
+  }
+}
+function renderMeta() {
+  document.getElementById('quoteDate').textContent = quoteData.quote.date;
+  document.getElementById('clientName').textContent = quoteData.quote.client;
+}
+function renderProducts() {
+  const tbody = document.querySelector('#productsTable tbody');
+  tbody.innerHTML = quoteData.products.map((p, i) => `
+    <tr data-index="${i}">
+      <td><img class="product-img" src="${p.img || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23f1f7f7%22 width=%2260%22 height=%2260%22/><circle cx=%2230%22 cy=%2224%22 r=%228%22 fill=%22%23bcd8d7%22/><path d=%22M12 52c0-9 8-15 18-15s18 6 18 15z%22 fill=%22%23bcd8d7%22/></svg>'}" alt="${p.name}"></td>
+      <td class="product-name" contenteditable="true" data-field="name" data-index="${i}" onblur="editProductField(${i}, 'name', this.textContent)">${p.name}</td>
+      <td class="price contenteditable" contenteditable="true" data-field="price" data-index="${i}" onblur="editProductField(${i}, 'price', parseNum(this.textContent))">${fmt(p.price)}</td>
+      <td><input type="number" class="qty-input" value="${p.qty || 1}" min="1" step="1" data-index="${i}" aria-label="Cantidad para ${p.name}"></td>
+      <td><input type="number" class="discount-input" value="${p.discount}" min="0" max="100" step="0.1" data-index="${i}" aria-label="Descuento para ${p.name}"></td>
+      <td class="price line-total" data-index="${i}">${fmt(p.price * (p.qty || 1) * (1 - p.discount / 100))}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="removeProduct(${i})" title="Quitar producto">Quitar</button></td>
+    </tr>
+  `).join('') || `<tr class="empty-row"><td colspan="7">Aún no hay productos. Usa «+ Agregar producto» para empezar.</td></tr>`;
+  attachDiscountListeners();
+}
+function attachDiscountListeners() {
+  document.querySelectorAll('.discount-input').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.index);
+      const val = Math.max(0, Math.min(100, parseNum(e.target.value)));
+      e.target.value = val;
+      quoteData.products[idx].discount = val;
+      recalc();
+    });
+    input.addEventListener('blur', (e) => {
+      if (e.target.value === '') e.target.value = 0;
+    });
+  });
+  document.querySelectorAll('.qty-input').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.index);
+      const val = Math.max(1, Math.round(parseNum(e.target.value)) || 1);
+      quoteData.products[idx].qty = val;
+      recalc();
+    });
+    input.addEventListener('blur', (e) => {
+      if (e.target.value === '') { e.target.value = 1; quoteData.products[parseInt(e.target.dataset.index)].qty = 1; recalc(); }
+    });
+  });
+}
+// delegar clics en celdas editables para re-render precio al editar
+document.querySelector('#productsTable tbody').addEventListener('blur', (e) => {
+  if (e.target.matches('[data-field="price"]')) {
+    const idx = parseInt(e.target.dataset.index);
+    const val = parseNum(e.target.textContent);
+    quoteData.products[idx].price = val;
+    recalc();
+  }
+}, true);
+
+function recalc() {
+  let subtotal = 0;
+  let totalDiscount = 0;
+  quoteData.products.forEach((p, i) => {
+    const qty = p.qty || 1;
+    const lineTotal = p.price * qty * (1 - p.discount / 100);
+    const lineDiscount = p.price * qty - lineTotal;
+    subtotal += lineTotal;
+    totalDiscount += lineDiscount;
+    const el = document.querySelector(`.line-total[data-index="${i}"]`);
+    if (el) el.textContent = fmt(lineTotal);
+  });
+  const ivaOn = document.getElementById('ivaToggle').checked;
+  const iva = ivaOn ? subtotal * 0.16 : 0;
+  document.getElementById('ivaTotal').textContent = fmt(iva);
+  document.getElementById('discountTotal').textContent = fmt(totalDiscount);
+  document.getElementById('finalTotal').textContent = fmt(subtotal + iva);
+  saveQuote();
+}
+
+// ===== IVA =====
+function toggleIVA(on) {
+  document.getElementById('ivaBox').style.display = on ? '' : 'none';
+  recalc();
+}
+
+// ===== NUEVA COTIZACIÓN =====
+function newQuote() {
+  if (quoteData.products.length && !confirm('¿Iniciar una cotización nueva? Se borrará la actual.')) return;
+  quoteData.products = [];
+  quoteData.quote.client = '';
+  quoteData.quote.phone = '';
+  quoteData.quote.rfc = '';
+  quoteData.quote.date = new Date().toISOString().split('T')[0];
+  quoteData.quote.number = nextFolio();
+  quoteData.quote.validity = '15 días';
+  document.getElementById('quoteValidity').value = '15 días';
+  document.getElementById('clientName').value = '';
+  document.getElementById('clientPhone').value = '';
+  document.getElementById('clientRfc').value = '';
+  document.getElementById('quoteDate').value = quoteData.quote.date;
+  document.getElementById('quoteNumber').value = quoteData.quote.number;
+  renderProducts();
+  recalc();
+}
+
+// ===== EDITAR CAMPO =====
+function editProductField(idx, field, value) {
+  if (field === 'price') value = parseNum(value);
+  quoteData.products[idx][field] = value;
+  recalc();
+}
+
+// ===== AGREGAR PRODUCTO (con búsqueda en base de datos local) =====
+document.getElementById('addProductBtn').addEventListener('click', () => {
+  showProductSelector();
+});
+
+function showProductSelector() {
+  const catalog = JSON.parse(localStorage.getItem(PRODUCT_DB_KEY) || '[]');
+
+  // Crear modal
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+    z-index: 1000; font-family: system-ui, -apple-system, sans-serif;
+  `;
+
+  const content = document.createElement('div');
+  content.style.cssText = `
+    background: white; border-radius: 12px; padding: 24px; width: 90%; max-width: 600px; max-height: 80vh;
+    overflow: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  `;
+
+  content.innerHTML = `
+    <h3 style="margin: 0 0 16px; color: var(--primary);">Agregar producto</h3>
+    <input type="text" id="productSearch" placeholder="Buscar producto..."
+           style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; margin-bottom: 12px;">
+    <select id="categoryFilter" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; margin-bottom: 16px;">
+      <option value="">Todas las categorías</option>
+    </select>
+    <div id="productList" style="max-height: 400px; overflow: auto;"></div>
+    <div style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px;">
+      <button class="btn" id="cancelAdd">Cancelar</button>
+      <button class="btn btn-primary" id="addCustomProduct" style="display: none;">Agregar manualmente</button>
+    </div>
+  `;
+
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+
+  const searchInput = content.querySelector('#productSearch');
+  const productList = content.querySelector('#productList');
+  const categorySelect = content.querySelector('#categoryFilter');
+  const addCustomBtn = content.querySelector('#addCustomProduct');
+
+  const categories = [...new Set(catalog.map(p => p.category))].filter(Boolean).sort();
+  categorySelect.innerHTML = '<option value="">Todas las categorías</option>' +
+    categories.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  function renderList(filter = '', category = '') {
+    const filtered = catalog.filter(p =>
+      (!filter || p.name.toLowerCase().includes(filter.toLowerCase())) &&
+      (!category || p.category === category)
+    );
+
+    productList.innerHTML = filtered.map(p => `
+      <div class="product-option" data-name="${p.name}" data-price="${p.price}" data-url="${p.url}" data-img="${p.img || ''}"
+           style="padding: 12px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; gap: 12px;">
+        <img src="${p.img || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22><rect fill=%22%23f1f7f7%22 width=%2260%22 height=%2260%22/><circle cx=%2230%22 cy=%2224%22 r=%228%22 fill=%22%23bcd8d7%22/><path d=%22M12 52c0-9 8-15 18-15s18 6 18 15z%22 fill=%22%23bcd8d7%22/></svg>'}"
+             alt="${p.name}" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover; background: #f0f0f0;">
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</div>
+          <div style="font-size: 0.85rem; color: var(--muted);">${p.category} • ${fmt(p.price)}</div>
+        </div>
+      </div>
+    `).join('') + (filter && filtered.length === 0 ?
+      '<div style="padding: 16px; text-align: center; color: var(--muted);">No se encontraron productos</div>' : '');
+
+    // Mostrar botón de agregar manualmente si hay filtro
+    addCustomBtn.style.display = filter || category ? 'inline-flex' : 'none';
+
+    // Event listeners para opciones
+    productList.querySelectorAll('.product-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const name = opt.dataset.name;
+        const price = parseFloat(opt.dataset.price);
+        const img = opt.dataset.img || '';
+        addProductToQuote(name, price, img);
+        document.body.removeChild(modal);
+      });
+      opt.addEventListener('mouseenter', () => opt.style.background = '#f5f5f5');
+      opt.addEventListener('mouseleave', () => opt.style.background = 'transparent');
+    });
+  }
+
+  searchInput.addEventListener('input', (e) => renderList(e.target.value, categorySelect.value));
+  categorySelect.addEventListener('change', () => renderList(searchInput.value, categorySelect.value));
+  searchInput.focus();
+
+  content.querySelector('#cancelAdd').addEventListener('click', () => document.body.removeChild(modal));
+
+  addCustomBtn.addEventListener('click', () => {
+    const name = searchInput.value.trim();
+    if (!name) return;
+    const price = prompt(`Ingresa precio para "${name}":`);
+    if (price !== null) {
+      addProductToQuote(name, parseNum(price));
+      document.body.removeChild(modal);
+    }
+  });
+
+  // Cerrar con Escape
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.body.removeChild(modal);
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) document.body.removeChild(modal);
+  });
+
+  renderList();
+}
+
+function addProductToQuote(name, price, img = "") {
+  quoteData.products.push({ img, name: name.trim(), price, qty: 1, discount: 0 });
+  renderProducts();
+  recalc();
+}
+
+// ===== QUITAR PRODUCTO (con confirmación y deshacer) =====
+let lastRemoved = null; // {idx, product, timeoutId}
+
+function removeProduct(idx) {
+  const product = quoteData.products[idx];
+  if (!product) return;
+
+  // Modal de confirmación
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+    z-index: 1000; font-family: system-ui, -apple-system, sans-serif;
+  `;
+  modal.innerHTML = `
+    <div style="background: white; border-radius: 12px; padding: 24px; width: 90%; max-width: 400px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+      <h3 style="margin: 0 0 12px; color: var(--primary);">¿Quitar producto?</h3>
+      <p style="margin: 0 0 20px; color: var(--text);">¿Eliminar "<strong>${product.name}</strong>" de la cotización?</p>
+      <div style="display: flex; justify-content: flex-end; gap: 8px;">
+        <button class="btn" id="cancelRemove">Cancelar</button>
+        <button class="btn btn-danger" id="confirmRemove">Quitar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  modal.querySelector('#cancelRemove').addEventListener('click', () => document.body.removeChild(modal));
+  modal.querySelector('#confirmRemove').addEventListener('click', () => {
+    document.body.removeChild(modal);
+    performRemove(idx, product);
+  });
+  modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.body.removeChild(modal); });
+  modal.addEventListener('click', (e) => { if (e.target === modal) document.body.removeChild(modal); });
+}
+
+function performRemove(idx, product) {
+  // Guardar para deshacer
+  lastRemoved = { idx, product: {...product} };
+
+  quoteData.products.splice(idx, 1);
+  renderProducts();
+  recalc();
+
+  // Mostrar toast con deshacer
+  showUndoToast();
+}
+
+function showUndoToast() {
+  // Limpiar toast anterior si existe
+  const existing = document.getElementById('undoToast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'undoToast';
+  toast.style.cssText = `
+    position: fixed; bottom: 24px; right: 24px; z-index: 1001;
+    background: #066c6e; color: white; padding: 14px 20px; border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 12px;
+    animation: slideIn 0.3s ease;
+  `;
+  toast.innerHTML = `
+    <span>Producto eliminado</span>
+    <button class="btn" style="background: white; color: #066c6e; padding: 6px 14px; font-size: 0.8rem;" id="undoBtn">Deshacer</button>
+  `;
+
+  // Añadir keyframes para animación
+  if (!document.getElementById('toastStyles')) {
+    const style = document.createElement('style');
+    style.id = 'toastStyles';
+    style.textContent = `
+      @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes slideOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(20px); } }
+    `;
+    document.head.appendChild(style);
+  }
+
+  document.body.appendChild(toast);
+
+  toast.querySelector('#undoBtn').addEventListener('click', undoRemove);
+
+  // Auto-ocultar después de 5 segundos
+  lastRemoved.timeoutId = setTimeout(() => {
+    hideToast(toast);
+    lastRemoved = null;
+  }, 5000);
+}
+
+function hideToast(toast) {
+  toast.style.animation = 'slideOut 0.3s ease forwards';
+  setTimeout(() => toast.remove(), 300);
+}
+
+function undoRemove() {
+  if (!lastRemoved) return;
+
+  clearTimeout(lastRemoved.timeoutId);
+
+  quoteData.products.splice(lastRemoved.idx, 0, lastRemoved.product);
+  renderProducts();
+  recalc();
+
+  const toast = document.getElementById('undoToast');
+  if (toast) hideToast(toast);
+
+  lastRemoved = null;
+}
+
+// ===== INIT ===== (renderizado real ocurre en DOMContentLoaded tras restaurar)
+renderCompany();
+renderMeta();
+
+
+// ===== HISTORIAL DE COTIZACIONES =====
+function openHistoryModal() {
+  const HIST_KEY = 'siluet_quote_history';
+  const history = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+  
+  const prev = document.getElementById('histModal');
+  if (prev) prev.remove();
+  const modal = document.createElement('div');
+  modal.id = 'histModal';
+  modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;padding:15px;';
+  
+  let rowsHtml = '';
+  if (history.length === 0) {
+    rowsHtml = '<tr><td colspan="5" style="text-align:center;padding:20px;color:#666;">No hay cotizaciones guardadas en el historial.</td></tr>';
+  } else {
+    history.forEach((item, idx) => {
+      const total = item.products.reduce((acc, p) => acc + (p.price * p.qty * (1 - (p.discount || 0) / 100)), 0);
+      const finalTot = item.iva ? total * 1.16 : total;
+      rowsHtml += `
+        <tr style="border-bottom:1px solid #eee;">
+          <td class="h-folio" style="padding:10px;font-weight:600;color:#066c6e;">${item.quote.number}</td>
+          <td class="h-fecha" style="padding:10px;">${(item.quote.date||'').split('-').reverse().join('/')}</td>
+          <td class="h-cliente" style="padding:10px;">${item.quote.client || 'Sin cliente'}</td>
+          <td class="h-total" style="padding:10px;text-align:right;font-weight:600;">$${finalTot.toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+          <td class="h-acc" style="padding:10px;text-align:center;">
+            <button class="btn btn-ghost" style="padding:4px 10px;font-size:0.8rem;" onclick="loadHistoryItem(${idx})">Cargar</button>
+            <button class="btn btn-ghost" style="padding:4px 10px;font-size:0.8rem;color:#c0392b;" onclick="deleteHistoryItem(${idx})">Eliminar</button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:12px;width:100%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,0.2);overflow:hidden;">
+      <div style="padding:16px 20px;background:#066c6e;color:#fff;display:flex;justify-content:space-between;align-items:center;">
+        <h3 style="margin:0;font-size:1.1rem;">Historial de Cotizaciones</h3>
+        <button id="closeHist" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;">&times;</button>
+      </div>
+      <div style="padding:20px;overflow:auto;flex:1;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+          <thead>
+            <tr style="background:#f4f9f8;color:#066c6e;text-align:left;">
+              <th style="padding:10px;">Folio</th>
+              <th style="padding:10px;">Fecha</th>
+              <th style="padding:10px;">Cliente</th>
+              <th style="padding:10px;text-align:right;">Total</th>
+              <th style="padding:10px;text-align:center;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:12px 20px;background:#f9f9f9;text-align:right;border-top:1px solid #eee;">
+        <button id="closeHistBottom" class="btn btn-ghost" style="padding:6px 16px;">Cerrar</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  modal.querySelector('#closeHist').onclick = () => modal.remove();
+  modal.querySelector('#closeHistBottom').onclick = () => modal.remove();
+  modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+}
+
+function loadHistoryItem(idx) {
+  const HIST_KEY = 'siluet_quote_history';
+  const history = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+  if (!history[idx]) return;
+  const item = history[idx];
+  Object.assign(quoteData.quote, item.quote);
+  quoteData.products = item.products;
+  document.getElementById('ivaToggle').checked = !!item.iva;
+  document.getElementById('quoteValidity').value = quoteData.quote.validity || '15 días';
+  document.getElementById('clientName').value = quoteData.quote.client || '';
+  document.getElementById('clientPhone').value = quoteData.quote.phone || '';
+  document.getElementById('clientRfc').value = quoteData.quote.rfc || '';
+  document.getElementById('quoteDate').value = quoteData.quote.date || '';
+  document.getElementById('quoteNumber').value = quoteData.quote.number || '';
+  toggleIVA(!!item.iva);
+  renderProducts();
+  recalc();
+  saveQuote();
+  const modal = document.getElementById('histModal');
+  if (modal) modal.remove();
+}
+
+function deleteHistoryItem(idx) {
+  if (!confirm('¿Eliminar esta cotización del historial?')) return;
+  const HIST_KEY = 'siluet_quote_history';
+  let history = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+  history.splice(idx, 1);
+  localStorage.setItem(HIST_KEY, JSON.stringify(history));
+  const modal = document.getElementById('histModal');
+  if (modal) modal.remove();
+  openHistoryModal();
+}
+
+
+// ===== EXPORTAR A PDF =====
+function exportToPDF() {
+  const client = (quoteData.quote.client || '').trim();
+  if (!client) {
+    alert('Ingresa el nombre del cliente antes de guardar la cotización.');
+    document.getElementById('clientName').focus();
+    return;
+  }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('p', 'mm', 'a4');
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 20;
+  let y = margin;
+
+  // Header con logo
+  if (quoteData.company.logo) {
+    try {
+      doc.addImage(quoteData.company.logo, 'PNG', margin, y, 30, 30);
+    } catch (e) {
+      // ignore image error
+    }
+  }
+  doc.setFontSize(22);
+  doc.setTextColor(44, 62, 80);
+  doc.setFont('helvetica', 'bold');
+  doc.text(quoteData.company.name, margin + 35, y + 12);
+
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100);
+  doc.text(`RFC: ${quoteData.company.rfc}`, margin + 35, y + 20);
+  doc.text(`Domicilio: ${quoteData.company.address.split('\n')[0]}`, margin + 35, y + 26);
+  doc.text(quoteData.company.contact, margin + 35, y + 32);
+  y += 42;
+
+  // Meta info
+  doc.setFontSize(10);
+  doc.setTextColor(80);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Fecha:', margin, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(quoteData.quote.date, margin + 25, y);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Cliente:', margin + 100, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(quoteData.quote.client || 'Mostrador', margin + 125, y);
+  y += 6;
+  
+  if (quoteData.quote.phone) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('Teléfono:', margin + 100, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(quoteData.quote.phone, margin + 125, y);
+    y += 6;
+  }
+  
+  if (quoteData.quote.rfc) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('RFC / Dir:', margin + 100, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(quoteData.quote.rfc, margin + 125, y);
+    y += 6;
+  }
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Folio:', margin + 100, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(quoteData.quote.number, margin + 125, y);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Vigencia:', margin, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(quoteData.quote.validity || '15 días', margin + 25, y);
+  y += 10;
+
+  // Tabla de productos
+  const tableData = quoteData.products.map((p, i) => {
+    const qty = p.qty || 1;
+    return [
+      String(i + 1),
+      p.name,
+      fmt(p.price),
+      String(qty),
+      `${p.discount}%`,
+      fmt(p.price * qty * (1 - p.discount / 100))
+    ];
+  });
+
+  doc.autoTable({
+    startY: y,
+    head: [['#', 'Producto', 'Precio Unit.', 'Cant.', 'Desc.', 'Importe']],
+    body: tableData,
+    theme: 'striped',
+    headStyles: { fillColor: [44, 62, 80], textColor: 255, fontSize: 9 },
+    bodyStyles: { fontSize: 8 },
+    columnStyles: {
+      0: { cellWidth: 10, halign: 'center' },
+      1: { cellWidth: 'auto' },
+      2: { cellWidth: 26, halign: 'right' },
+      3: { cellWidth: 14, halign: 'center' },
+      4: { cellWidth: 16, halign: 'center' },
+      5: { cellWidth: 28, halign: 'right' }
+    },
+    margin: { left: margin, right: margin }
+  });
+
+  y = doc.lastAutoTable.finalY + 5;
+
+  // Totales
+  const subtotal = quoteData.products.reduce((s, p) => s + p.price * (p.qty || 1) * (1 - p.discount / 100), 0);
+  const totalDiscount = quoteData.products.reduce((s, p) => s + p.price * (p.qty || 1) * (p.discount / 100), 0);
+  const ivaOn = document.getElementById('ivaToggle').checked;
+  const iva = ivaOn ? subtotal * 0.16 : 0;
+
+  doc.setFontSize(10);
+  const rightX = pageWidth - margin;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(80);
+  doc.text('Descuento:', rightX - 50, y, { align: 'right' });
+  doc.setFont('helvetica', 'bold');
+  doc.text(fmt(totalDiscount), rightX, y, { align: 'right' });
+  y += 7;
+
+  if (ivaOn) {
+    doc.setFont('helvetica', 'normal');
+    doc.text('IVA (16%):', rightX - 50, y, { align: 'right' });
+    doc.setFont('helvetica', 'bold');
+    doc.text(fmt(iva), rightX, y, { align: 'right' });
+    y += 7;
+  }
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.setTextColor(211, 84, 0);
+  doc.text('TOTAL:', rightX - 50, y, { align: 'right' });
+  doc.text(fmt(subtotal + iva), rightX, y, { align: 'right' });
+
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(150);
+  doc.setFont('helvetica', 'italic');
+  doc.text(`Generado el ${new Date().toLocaleDateString('es-MX')} — Siluet Perfect`, pageWidth / 2, pageHeight - 25, { align: 'center' });
+
+  // Texto legal en rojo al pie
+  doc.setFontSize(9);
+  doc.setTextColor(211, 84, 0);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Los precios pueden variar segun el tipo de cambio.', pageWidth / 2, pageHeight - 15, { align: 'center' });
+  doc.text('EN CASO DE REQUERIR FACTURA SE SUMARA EL IVA.', pageWidth / 2, pageHeight - 8, { align: 'center' });
+
+  doc.save(`cotizacion_${quoteData.quote.number}.pdf`);
+}
+
+function updateClientPhone(val) {
+  quoteData.quote.phone = val;
+  saveQuote();
+}
+function updateClientRfc(val) {
+  quoteData.quote.rfc = val;
+  saveQuote();
+}
+
+</script>
+</body>
+</html>

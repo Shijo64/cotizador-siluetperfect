@@ -2087,7 +2087,10 @@ function showProductSelector() {
   content.innerHTML = `
     <h3 style="margin: 0 0 16px; color: var(--primary);">Agregar producto</h3>
     <input type="text" id="productSearch" placeholder="Buscar producto..."
-           style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; margin-bottom: 16px;">
+           style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; margin-bottom: 12px;">
+    <select id="categoryFilter" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; margin-bottom: 16px;">
+      <option value="">Todas las categorías</option>
+    </select>
     <div id="productList" style="max-height: 400px; overflow: auto;"></div>
     <div style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px;">
       <button class="btn" id="cancelAdd">Cancelar</button>
@@ -2100,12 +2103,18 @@ function showProductSelector() {
 
   const searchInput = content.querySelector('#productSearch');
   const productList = content.querySelector('#productList');
+  const categorySelect = content.querySelector('#categoryFilter');
   const addCustomBtn = content.querySelector('#addCustomProduct');
 
-  function renderList(filter = '') {
-    const filtered = filter
-      ? catalog.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))
-      : catalog;
+  const categories = [...new Set(catalog.map(p => p.category))].filter(Boolean).sort();
+  categorySelect.innerHTML = '<option value="">Todas las categorías</option>' +
+    categories.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  function renderList(filter = '', category = '') {
+    const filtered = catalog.filter(p =>
+      (!filter || p.name.toLowerCase().includes(filter.toLowerCase())) &&
+      (!category || p.category === category)
+    );
 
     productList.innerHTML = filtered.map(p => `
       <div class="product-option" data-name="${p.name}" data-price="${p.price}" data-url="${p.url}" data-img="${p.img || ''}"
@@ -2121,7 +2130,7 @@ function showProductSelector() {
       '<div style="padding: 16px; text-align: center; color: var(--muted);">No se encontraron productos</div>' : '');
 
     // Mostrar botón de agregar manualmente si hay filtro
-    addCustomBtn.style.display = filter ? 'inline-flex' : 'none';
+    addCustomBtn.style.display = filter || category ? 'inline-flex' : 'none';
 
     // Event listeners para opciones
     productList.querySelectorAll('.product-option').forEach(opt => {
@@ -2137,7 +2146,8 @@ function showProductSelector() {
     });
   }
 
-  searchInput.addEventListener('input', (e) => renderList(e.target.value));
+  searchInput.addEventListener('input', (e) => renderList(e.target.value, categorySelect.value));
+  categorySelect.addEventListener('change', () => renderList(searchInput.value, categorySelect.value));
   searchInput.focus();
 
   content.querySelector('#cancelAdd').addEventListener('click', () => document.body.removeChild(modal));
