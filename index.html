@@ -2397,11 +2397,10 @@ function deleteHistoryItem(idx) {
 
 function shareWhatsApp() {
   const client = (quoteData.quote.client || '').trim();
-  const phone = (quoteData.quote.phone || '').trim();
+  const phone = (quoteData.quote.phone || '').replace(/\D/g, '');
   const folio = quoteData.quote.number;
   const validity = quoteData.quote.validity || '15';
   
-  // Calcular total actual
   let subtotal = 0;
   quoteData.items.forEach(i => {
     let price = i.price * (1 - (i.discount || 0) / 100);
@@ -2410,15 +2409,11 @@ function shareWhatsApp() {
   let tax = quoteData.quote.includeTax ? subtotal * 0.16 : 0;
   let total = subtotal + tax;
   
-  const text = `*COTIZACIÓN SILUET PERFECT*\n` +
-               `*Folio:* #${folio}\n` +
-               `*Cliente:* ${client || 'Mostrador'}\n` +
-               `*Vigencia:* ${validity} días\n` +
-               `*Total:* $${total.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN\n\n` +
-               `Ver detalles en: https://cotizador.siluetperfect.shop`;
-               
-  const url = `https://api.whatsapp.com/send?phone=${phone}&text=` + encodeURIComponent(text);
-  window.open(url, '_blank');
+  const text = `*COTIZACIÓN SILUET PERFECT*\n*Folio:* #${folio}\n*Cliente:* ${client || 'Mostrador'}\n*Vigencia:* ${validity} días\n*Total:* $${total.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN\n\nVer detalles en: https://cotizador.siluetperfect.shop`;
+  
+  let url = phone ? `https://api.whatsapp.com/send?phone=${phone}&text=` + encodeURIComponent(text) : `https://wa.me/?text=` + encodeURIComponent(text);
+  
+  window.location.href = url;
 }
 
 function exportToPDF() {
