@@ -284,7 +284,6 @@
   </div>
 
   <div class="actions">
-    <button class="btn btn-success btn-lg" onclick="shareWhatsApp()" style="background: #25d366; color: white; border: none;" title="Compartir cotización por WhatsApp">💬 Compartir WhatsApp</button>
     <button class="btn btn-primary btn-lg" onclick="exportToPDF()">Guardar</button>
   </div>
 </div>
@@ -2395,32 +2394,7 @@ function deleteHistoryItem(idx) {
 
 // ===== EXPORTAR A PDF =====
 
-function shareWhatsApp() {
-  const client = (quoteData.quote.client || '').trim();
-  const phone = (quoteData.quote.phone || '').replace(/\D/g, '');
-  const folio = quoteData.quote.number;
-  const validity = quoteData.quote.validity || '15';
-  
-  let subtotal = 0;
-  quoteData.items.forEach(i => {
-    let price = i.price * (1 - (i.discount || 0) / 100);
-    subtotal += price * i.qty;
-  });
-  let tax = quoteData.quote.includeTax ? subtotal * 0.16 : 0;
-  let total = subtotal + tax;
-  
-  const text = `*COTIZACIÓN SILUET PERFECT*\n*Folio:* #${folio}\n*Cliente:* ${client || 'Mostrador'}\n*Vigencia:* ${validity} días\n*Total:* $${total.toLocaleString('es-MX', {minimumFractionDigits: 2})} MXN\n\nVer detalles en: https://cotizador.siluetperfect.shop`;
-  
-  let url = phone ? `https://api.whatsapp.com/send?phone=${phone}&text=` + encodeURIComponent(text) : `https://wa.me/?text=` + encodeURIComponent(text);
-  
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
+
 
 function exportToPDF() {
   const client = (quoteData.quote.client || '').trim();
