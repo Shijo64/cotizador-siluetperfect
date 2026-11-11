@@ -2413,7 +2413,13 @@ function shareWhatsApp() {
   
   let url = phone ? `https://api.whatsapp.com/send?phone=${phone}&text=` + encodeURIComponent(text) : `https://wa.me/?text=` + encodeURIComponent(text);
   
-  window.location.href = url;
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function exportToPDF() {
